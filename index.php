@@ -24,4 +24,9 @@
 		include('./app/view/page/footer.php');
 	}
 
+	if(isset($_GET["checkDeco"])){
+		session_destroy();
+		header('Location: index.php');
+	}
+
 ?>

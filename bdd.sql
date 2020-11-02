@@ -165,3 +165,7 @@ VALUES ("projectManager", md5("projectManager"), "MANAGER", "Jean-ProjectManager
 
 INSERT INTO Admin (login, password, name, firstname, idRole)
 VALUES ("admin", md5("admin"), "ADMIN", "Jean-Admin", 3);
+
+INSERT INTO Caracteristic (label)
+VALUES ("Php"),
+("HTML");

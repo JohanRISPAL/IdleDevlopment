@@ -61,7 +61,7 @@ $( document ).ready(function(){
 
                     else if (exist == true)
                     {
-                        document.location.href="../php/AccueilConnecte.php";
+                        document.location.href="http://localhost/idleDevlopment/index.php?p=accueil&role=admin";
                     }
 
     			}
