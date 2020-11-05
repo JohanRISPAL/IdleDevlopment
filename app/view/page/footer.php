@@ -16,6 +16,8 @@
 			if($_GET["role"] == "projectManager"){
 				echo '<script src="./app/view/assets/js/ProjectManager/connexion.js"></script>';
 				echo '<script src="./app/view/assets/js/ProjectManager/navBar.js"></script>';
+				echo '<script src="./app/view/assets/js/ProjectManager/candidat.js"></script>';
+				echo '<script src="./app/view/assets/js/ProjectManager/informationDay.js"></script>';
 			}
 		}
 	?>
