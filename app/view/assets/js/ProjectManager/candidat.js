@@ -29,7 +29,7 @@ $( document ).ready(function(){
 
         buttonValidate.onclick = function(event) {
             $.ajax({
-                data : {method : "createCandidat", name : nameField.value, firstName : firstNameField.value, birthday : birthdayField.value, poleEmploiNumber : poleEmploiNumberField.value},
+                data : {method : "createCandidate", name : nameField.value, firstName : firstNameField.value, birthday : birthdayField.value, poleEmploiNumber : poleEmploiNumberField.value},
                 type : "post",
                 url : "./app/view/assets/js/fonctionJs.php",
                 success: function(response)
@@ -68,7 +68,7 @@ $( document ).ready(function(){
 
         buttonConfirm.onclick = function(event){
             $.ajax({
-                data : {method : "updateCandidat", name : name.value, firstName : firstName.value, birthday : birthday.value, poleEmploiNumber : poleEmploiNumber.value, id : id},
+                data : {method : "updateCandidate", name : name.value, firstName : firstName.value, birthday : birthday.value, poleEmploiNumber : poleEmploiNumber.value, id : id},
                 type : "post",
                 url : "./app/view/assets/js/fonctionJs.php",
                 success: function(response)
@@ -80,7 +80,7 @@ $( document ).ready(function(){
 
         buttonSuppr.onclick = function(event){
             $.ajax({
-                data : {method : "deleteCandidat",  id : id},
+                data : {method : "deleteCandidate",  id : id},
                 type : "post",
                 url : "./app/view/assets/js/fonctionJs.php",
                 success: function(response)

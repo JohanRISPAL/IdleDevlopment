@@ -3,12 +3,12 @@
 class InformationDay{
 	private $_id;
 	private $_label;
-	private $_dateOfTheDay;
+	private $_dateOfDay;
 
-	public function __construct($_id, $_label, $_dateOfTheDay){
+	public function __construct($_id, $_label, $_dateOfDay){
 		$this->_id = $_id;
 		$this->_label = $_label;
-		$this->_dateOfTheDay = $_dateOfTheDay;
+		$this->_dateOfDay = $_dateOfDay;
 	}
 
 	public function getID(){
@@ -27,12 +27,12 @@ class InformationDay{
 		$this->_label = $_label;
 	}
 
-	public function getDateOfTheDay(){
-		return $this->_dateOfTheDay;
+	public function getDateOfDay(){
+		return $this->_dateOfDay;
 	}
 
-	public function setDateOfTheDay($_dateOfTheDay){
-		$this->_dateOfTheDay = $_dateOfTheDay;
+	public function setDateOfDay($_dateOfDay){
+		$this->_dateOfDay = $_dateOfDay;
 	}
 
 	public function getInformationDay($bdd){
@@ -43,7 +43,7 @@ class InformationDay{
 		$informationDay = array();
 
 		foreach ($queryResult as $q) {
-			array_push($informationDay, New InformationDay($q["id"], $q["label"], $q["dateOfTheDay"]));
+			array_push($informationDay, New InformationDay($q["id"], $q["label"], $q["dateOfDay"]));
 		}
 		return $informationDay;
 	}

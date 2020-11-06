@@ -86,23 +86,23 @@
 		echo json_encode($boolean);
 	}
 
-	function createCandidat(){
+	function createCandidate(){
 		$bdd = getConnexion();
 
 		$login = substr($_POST["firstName"], 0, 1). $_POST["name"];
 		$password = substr($_POST["name"], 0, 1). $_POST["firstName"];
 
-		$query = $bdd->prepare("INSERT INTO candidat (login, password, name, firstname, birthday, poleEmploiNumber, idRole) VALUES (?, md5(?), ?, ?, ?, ?, ?);");
+		$query = $bdd->prepare("INSERT INTO candidate (login, password, name, firstname, birthday, poleEmploiNumber, docket_ID) VALUES (?, md5(?), ?, ?, ?, ?, ?);");
 		$query->execute(array($login, $password, $_POST["name"], $_POST["firstName"], $_POST["birthday"], $_POST["poleEmploiNumber"], 1));
 	}
 
 
-	function updateCandidat(){
+	function updateCandidate(){
 		$bdd = getConnexion();
 		$login = substr($_POST["firstName"], 0, 1). $_POST["name"];
 		$password = substr($_POST["name"], 0, 1). $_POST["firstName"];
 
-		$query = $bdd->prepare("UPDATE candidat SET login = :login, password = md5(:password), name = :name, firstname = :firstname, birthday = :birthday, poleEmploiNumber = :poleEmploiNumber  WHERE id = :id");
+		$query = $bdd->prepare("UPDATE candidate SET login = :login, password = md5(:password), name = :name, firstname = :firstname, birthday = :birthday, poleEmploiNumber = :poleEmploiNumber  WHERE id = :id");
 		$query->bindParam(':login', $login, PDO::PARAM_STR);
 		$query->bindParam(':password', $password, PDO::PARAM_STR);
 		$query->bindParam(':name', $_POST["name"], PDO::PARAM_STR);
@@ -113,10 +113,10 @@
 		$query->execute();
 	}
 
-	function deleteCandidat(){
+	function deleteCandidate(){
 		$bdd = getConnexion();
 
-		$query = $bdd->prepare("DELETE FROM candidat WHERE id = :id");
+		$query = $bdd->prepare("DELETE FROM candidate WHERE id = :id");
 		$query->bindParam(':id', $_POST["id"], PDO::PARAM_INT);
 		$query->execute();		
 	}
@@ -124,14 +124,14 @@
 	function createInformationDay(){
 		$bdd = getConnexion();
 
-		$query = $bdd->prepare("INSERT INTO informationDay (label, dateOfTheDay) VALUES (?, ?);");
+		$query = $bdd->prepare("INSERT INTO informationday (label, dateOfDay) VALUES (?, ?);");
 		$query->execute(array($_POST["label"], $_POST["date"]));
 	}
 
 	function updateInformationDay(){
 		$bdd = getConnexion();
 
-		$query = $bdd->prepare("UPDATE informationDay SET label = :label , dateOfTheDay = :dateDay  WHERE id = :id");
+		$query = $bdd->prepare("UPDATE informationDay SET label = :label , dateOfDay = :dateDay  WHERE id = :id");
 		$query->bindParam(':label', $_POST["label"], PDO::PARAM_STR);
 		$query->bindParam(':dateDay', $_POST["date"], PDO::PARAM_STR);
 		$query->bindParam(':id', $_POST["id"], PDO::PARAM_INT);
@@ -144,5 +144,22 @@
 		$query = $bdd->prepare("DELETE FROM informationDay WHERE id = :id");
 		$query->bindParam(':id', $_POST["id"], PDO::PARAM_INT);
 		$query->execute();		
+	}
+
+	function getCandidateByInformationDay(){
+		$bdd = getConnexion();
+		$query = $bdd->prepare("SELECT * FROM `candidate` INNER JOIN candidate_informationday ON candidate.id = candidate_informationday.candidate_ID WHERE candidate_informationday.informationday_ID = :informationDay_ID ");
+		$query->bindParam(':informationDay_ID', $_POST["informationDay_ID"], PDO::PARAM_INT);
+		$query->execute();
+
+		$queryResult = $query->fetchAll();
+
+		$candidate = array();
+
+		foreach ($queryResult as $q) {
+			array_push($candidate, , New Candidate($q["id"], $q["login"], $q["password"], $q["name"], $q["firstname"], $q["birthday"], $q["poleEmploiNumber"], $q["docket_ID"]));
+		}
+		
+		echo json_encode($candidate);
 	}
 ?>

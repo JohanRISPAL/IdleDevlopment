@@ -1,6 +1,6 @@
 <?php
 
-class Candidat{
+class Candidate{
 	private $_id;
 	private $_login;
 	private $_password;
@@ -85,15 +85,15 @@ class Candidat{
 		$this->_idRole = $_idRole;
 	}
 
-	public function getCandidat($bdd){
-		$query = $bdd->prepare("SELECT * FROM candidat");
+	public function getCandidate($bdd){
+		$query = $bdd->prepare("SELECT * FROM candidate");
 		$query->execute();
 		$queryResult = $query->fetchAll();
 
 		$candidat = array();
 
 		foreach ($queryResult as $q) {
-			array_push($candidat, New Candidat($q["id"], $q["login"], $q["password"], $q["name"], $q["firstname"], $q["birthday"], $q["poleEmploiNumber"], $q["idRole"]));
+			array_push($candidat, New Candidate($q["id"], $q["login"], $q["password"], $q["name"], $q["firstname"], $q["birthday"], $q["poleEmploiNumber"], $q["docket_ID"]));
 		}
 		return $candidat;
 	}

@@ -14,10 +14,7 @@ $( document ).ready(function(){
     			url : "./app/view/assets/js/fonctionJs.php",
     			success: function(response)
     			{
-                    var reponse = JSON.parse(response);
-                    console.log(reponse);
-
-                    if (reponse == false)
+                    if (response == false)
                     {
                         exist = false;
                     }

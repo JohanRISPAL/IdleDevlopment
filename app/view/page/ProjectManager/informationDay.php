@@ -19,10 +19,11 @@
 					echo "<p>Nom : </p>";
 					echo '<input type="text" id="label'.$i->getID().'" disabled value="'. $i->getLabel().'">';
 					echo "<p>Date : </p>";
-					echo '<input type="date" id="date'.$i->getID().'" disabled value="'. $i->getDateOfTheDay().'">';
+					echo '<input type="date" id="date'.$i->getID().'" disabled value="'. $i->getDateOfDay().'">';
 					echo "<button class='modifButton' value='".$i->getID()."'><i class='material-icons'>mode_edit</i></button>";
 					echo "<button class='confirmModif' id='confirm".$i->getID()."'><i class='material-icons'>check</i></button>";
 					echo "<button class='supprDay' id='suppr".$i->getID()."'><i class='material-icons'>close</i></button>";
+					echo "<button class='addCandidate' id='addCandidate".$i->getID()."'>Ajouter des candidats</button>";
 				}
 			}else{
 				echo "Il n'y a pas encore de journée d'information !";
