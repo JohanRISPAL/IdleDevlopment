@@ -75,4 +75,32 @@ $( document ).ready(function(){
             });
         };
     });
+
+    $(".showCandidate").click(function(index){
+        id = $(this).val();
+        $.ajax({
+        data : {method : "getCandidateByInformationDay",  informationDay_ID : id},
+        type : "post",
+        url : "./app/view/assets/js/fonctionJs.php",
+            success: function(response) 
+            {
+                let candidate = JSON.parse(response),
+                candidateList = document.getElementById("candidateList");
+
+                $.each(candidate, function(index, val){
+                    let candidateName = document.createElement("p");
+                    candidateName.innerHTML = val[1];
+
+                    let buttonSupprCandidate = document.createElement("button");
+                    buttonSupprCandidate.setAttribute("value", val[0]);
+                    buttonSupprCandidate.innerHTML = "Delete";
+
+                    candidateList.appendChild(candidateName);
+                    candidateList.appendChild(buttonSupprCandidate);
+
+                    
+                });
+            }
+        });
+    });
 });

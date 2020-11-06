@@ -157,9 +157,9 @@
 		$candidate = array();
 
 		foreach ($queryResult as $q) {
-			array_push($candidate, , New Candidate($q["id"], $q["login"], $q["password"], $q["name"], $q["firstname"], $q["birthday"], $q["poleEmploiNumber"], $q["docket_ID"]));
+			array_push($candidate, [$q["id"], $q["firstname"]]);
 		}
-		
+
 		echo json_encode($candidate);
 	}
 ?>

@@ -12,7 +12,7 @@
 		<button class="col l1 offset-l1" id="createInformationDay"><i class="material-icons">add</i></button>
 	</div>
 	
-	<div class="col l8 offset-l2" id="candidatList">
+	<div class="col l8 offset-l2" id="informationDayList">
 		<?php
 			if(!empty($allInformationDay)){
 				foreach ($allInformationDay as $i){
@@ -23,14 +23,15 @@
 					echo "<button class='modifButton' value='".$i->getID()."'><i class='material-icons'>mode_edit</i></button>";
 					echo "<button class='confirmModif' id='confirm".$i->getID()."'><i class='material-icons'>check</i></button>";
 					echo "<button class='supprDay' id='suppr".$i->getID()."'><i class='material-icons'>close</i></button>";
-					echo "<button class='addCandidate' id='addCandidate".$i->getID()."'>Ajouter des candidats</button>";
+					echo "<button class='showCandidate' value='".$i->getID()."'>Liste des candidats</button>";
+					echo "<div id='candidateList'>";
+					echo "</div>";
 				}
 			}else{
 				echo "Il n'y a pas encore de journée d'information !";
 			}	
 		?>
 	</div>
-
 	<div class="col l8 offset-l2" id="creation">
 
 	</div>
