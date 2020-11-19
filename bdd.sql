@@ -59,7 +59,6 @@ CREATE TABLE Answer(
 	id int(11) NOT NULL AUTO_INCREMENT,
 	label varchar(64),
 	isTrue boolean,
-	urlMedia varchar(64),
 	question_ID int(11),
 	PRIMARY KEY (id)
 )	DEFAULT CHARSET=utf8;
@@ -68,7 +67,6 @@ CREATE TABLE Question(
 	id int(11) NOT NULL AUTO_INCREMENT,
 	label varchar(64),
 	isEliminatory boolean,
-	urlMedia varchar(64),
 	level_ID int(11),
 	domain_ID int(11),
 	test_ID int(11),
@@ -113,6 +111,7 @@ CREATE TABLE Planing_Hour(
 	planing_ID int(11),
 	hour_ID int(11),
 	candidate_ID int(11),
+	projectManager_ID int(11),
 	PRIMARY KEY (id)
 )	DEFAULT CHARSET=utf8;
 
@@ -126,6 +125,26 @@ CREATE TABLE candidate_InformationDay (
 CREATE TABLE Hour(
 	id int(11) NOT NULL AUTO_INCREMENT,
 	label varchar(64),
+	PRIMARY KEY (id)
+)	DEFAULT CHARSET=utf8;
+
+CREATE TABLE Media(
+	id int(11) NOT NULL AUTO_INCREMENT,
+	url varchar(64),
+	PRIMARY KEY (id)
+)	DEFAULT CHARSET=utf8;
+
+CREATE TABLE Answer_Media(
+	id int(11) NOT NULL AUTO_INCREMENT,
+	media_ID int(11),
+	answer_ID int(11),
+	PRIMARY KEY (id)
+)	DEFAULT CHARSET=utf8;
+
+CREATE TABLE Question_Media(
+	id int(11) NOT NULL AUTO_INCREMENT,
+	media_ID int(11),
+	question_ID int(11),
 	PRIMARY KEY (id)
 )	DEFAULT CHARSET=utf8;
 
@@ -209,6 +228,11 @@ ADD CONSTRAINT Planing_Hour_Candidate_ID
 FOREIGN KEY (candidate_ID)
 REFERENCES Candidate(id);
 
+ALTER TABLE Planing_Hour
+ADD CONSTRAINT Planing_Hour_ProjectManager_ID
+FOREIGN KEY (projectManager_ID)
+REFERENCES ProjectManager(id);
+
 ALTER TABLE candidate_informationday
 ADD CONSTRAINT candidate_informationday_Candidate_ID
 FOREIGN KEY (candidate_ID)
@@ -217,7 +241,27 @@ REFERENCES Candidate(id);
 ALTER TABLE candidate_informationday
 ADD CONSTRAINT candidate_informationday_InformationDay_ID
 FOREIGN KEY (informationday_ID)
-REFERENCES InformationDay(id)
+REFERENCES InformationDay(id);
+
+ALTER TABLE Answer_Media
+ADD CONSTRAINT answer_media_media_ID
+FOREIGN KEY (media_ID)
+REFERENCES Media(id);
+
+ALTER TABLE Answer_Media
+ADD CONSTRAINT answer_media_answer_ID
+FOREIGN KEY (answer_ID)
+REFERENCES Answer(id);
+
+ALTER TABLE Question_Media
+ADD CONSTRAINT question_media_media_ID
+FOREIGN KEY (media_ID)
+REFERENCES Media(id);
+
+ALTER TABLE Question_Media
+ADD CONSTRAINT question_media_question_ID
+FOREIGN KEY (question_ID)
+REFERENCES Question(id);
 
 INSERT INTO Docket (label)
 VALUES ("Candidat"),

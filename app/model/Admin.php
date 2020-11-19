@@ -73,7 +73,7 @@ class Admin{
 		$admin = array();
 
 		foreach ($queryResult as $q) {
-			array_push($projectManager, New Admin($q["id"], $q["login"], $q["password"], $q["name"], $q["firstname"], $q["idRole"]));
+			array_push($admin, New Admin($q["id"], $q["login"], $q["password"], $q["name"], $q["firstname"], $q["idRole"]));
 		}
 		return $admin;
 	}

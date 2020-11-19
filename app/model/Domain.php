@@ -24,5 +24,18 @@ class Domain{
 	public function setLabel($_label){
 		$this->_label = $_label;
 	}
+
+	public function getDomain($bdd){
+		$query = $bdd->prepare("SELECT * FROM domain");
+		$query->execute();
+		$queryResult = $query->fetchAll();
+
+		$domain = array();
+
+		foreach ($queryResult as $q) {
+			array_push($domain, New Domain($q["id"], $q["label"]));
+		}
+		return $domain;
+	}
 }
 ?>

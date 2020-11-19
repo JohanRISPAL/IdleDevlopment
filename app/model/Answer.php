@@ -4,14 +4,12 @@ class Answer{
 	private $_id;
 	private $_label;
 	private $_isTrue;
-	private $_urlMedia;
 	private $_question_ID;
 
-	public function __construct($_id, $_label, $_isTrue, $_urlMedia, $_question_ID){
+	public function __construct($_id, $_label, $_isTrue, $_question_ID){
 		$this->_id = $_id;
 		$this->_label = $_label;
 		$this->_isTrue = $_isTrue;
-		$this->_urlMedia = $_urlMedia;
 		$this->_question_ID = $_question_ID;
 	}
 
@@ -37,14 +35,6 @@ class Answer{
 
 	public function setIsTrue($_isTrue){
 		$this->_isTrue = $_isTrue;
-	}
-
-	public function getUrlMedia(){
-		return $this->_urlMedia;
-	}
-
-	public function setUrlMedia($_urlMedia){
-		$this->_urlMedia = $_urlMedia;
 	}
 
 	public function getQuestion_ID(){

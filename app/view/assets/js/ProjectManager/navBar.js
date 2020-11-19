@@ -9,7 +9,7 @@ $( document ).ready(function(){
     });
 
     $("#pagePlanning").click(function(event){
-        document.location.href="http://localhost/idleDevlopment/index.php?p=planning&role=projectManager";
+        document.location.href="http://localhost/idleDevlopment/index.php?p=planing&role=projectManager";
     });
 
     $("#pageResultat").click(function(event){

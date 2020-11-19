@@ -24,5 +24,18 @@ class Level{
 	public function setLabel($_label){
 		$this->_label = $_label;
 	}
+
+	public function getLevel($bdd){
+		$query = $bdd->prepare("SELECT * FROM level");
+		$query->execute();
+		$queryResult = $query->fetchAll();
+
+		$level = array();
+
+		foreach ($queryResult as $q) {
+			array_push($level, New Level($q["id"], $q["label"]));
+		}
+		return $level;
+	}
 }
 ?>

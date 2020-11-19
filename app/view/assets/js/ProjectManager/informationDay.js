@@ -77,9 +77,9 @@ $( document ).ready(function(){
     });
 
     $(".showCandidate").click(function(index){
-        id = $(this).val();
+        let id_informationDay = $(this).val();
         $.ajax({
-        data : {method : "getCandidateByInformationDay",  informationDay_ID : id},
+        data : {method : "getCandidateByInformationDay",  informationDay_ID : id_informationDay},
         type : "post",
         url : "./app/view/assets/js/fonctionJs.php",
             success: function(response) 
@@ -88,7 +88,8 @@ $( document ).ready(function(){
                 candidateList = document.getElementById("candidateList");
 
                 $.each(candidate, function(index, val){
-                    let candidateName = document.createElement("p");
+                    let id = val[0],
+                    candidateName = document.createElement("p");
                     candidateName.innerHTML = val[1];
 
                     let buttonSupprCandidate = document.createElement("button");
@@ -98,8 +99,63 @@ $( document ).ready(function(){
                     candidateList.appendChild(candidateName);
                     candidateList.appendChild(buttonSupprCandidate);
 
-                    
+                    buttonSupprCandidate.onclick = function(event){
+                        $.ajax({
+                            data : {method : "deleteCandidateInformationDay",  id : id},
+                            type : "post",
+                            url : "./app/view/assets/js/fonctionJs.php",
+                            success: function(response)
+                            {
+                               
+                            }
+                        });
+                    };
                 });
+
+                let buttonAddCandidate = document.createElement("button");
+                buttonAddCandidate.innerHTML = "Add";
+
+                candidateList.appendChild(buttonAddCandidate);
+
+                buttonAddCandidate.onclick = function(event){
+                        $.ajax({
+                            data : {method : "getCandidateNotInInformationDay", informationday_ID : id_informationDay},
+                            type : "post",
+                            url : "./app/view/assets/js/fonctionJs.php",
+                            success: function(response)
+                            {
+                                let candidate = JSON.parse(response),
+                                dropdownCandidate = document.createElement("select");
+
+                                let disabledOption = document.createElement("option");
+                                disabledOption.setAttribute("disabled", true);
+                                disabledOption.innerHTML = "Clique sur un candidat pour l'ajouter";
+
+                                dropdownCandidate.appendChild(disabledOption);
+                                
+                                $.each(candidate, function(index, val){
+                                    let option = document.createElement("option");
+                                    option.setAttribute('value', val[0]);
+                                    option.innerHTML= val[1] + " " + val[2];
+                                    dropdownCandidate.appendChild(option);
+
+                                    option.onclick = function(event){
+                                        $.ajax({
+                                            data : {method : "addCandidateInInformationDay",  candidate_ID : option.value, informationDay_ID : id_informationDay},
+                                            type : "post",
+                                            url : "./app/view/assets/js/fonctionJs.php",
+                                            success: function(response)
+                                            {
+                                               
+                                            }
+                                        });
+                                    };
+                                });
+
+                                candidateList.appendChild(dropdownCandidate);
+                            }
+                        });
+                };
             }
         });
     });

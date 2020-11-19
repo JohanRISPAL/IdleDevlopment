@@ -4,16 +4,14 @@ class Question{
 	private $_id;
 	private $_label;
 	private $_isEliminatory;
-	private $_urlMedia;
 	private $_level_ID;
 	private $_domain_ID;
 	private $_test_ID;
 
-	public function __construct($_id, $_label, $_isEliminatory, $_urlMedia, $_level_ID, $_domain_ID, $_test_ID){
+	public function __construct($_id, $_label, $_isEliminatory, $_level_ID, $_domain_ID, $_test_ID){
 		$this->_id = $_id;
 		$this->_label = $_label;
 		$this->_isEliminatory = $_isEliminatory;
-		$this->_urlMedia = $_urlMedia;
 		$this->_level_ID = $_level_ID;
 		$this->_domain_ID = $_domain_ID;
 		$this->_test_ID = $_test_ID;
@@ -41,14 +39,6 @@ class Question{
 
 	public function setIsEliminatory($_isEliminatory){
 		$this->_isEliminatory = $_isEliminatory;
-	}
-
-	public function getUrlMedia(){
-		return $this->_urlMedia;
-	}
-
-	public function setUrlMedia($_urlMedia){
-		$this->_urlMedia = $_urlMedia;
 	}
 
 	public function getLevel_ID(){
