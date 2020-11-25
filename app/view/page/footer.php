@@ -20,6 +20,9 @@
 				elseif($_GET["p"] == "question"){
 					echo '<script src="./app/view/assets/js/Admin/question.js"></script>';
 				}
+				elseif($_GET["p"] == "test"){
+					echo '<script src="./app/view/assets/js/Admin/test.js"></script>';
+				}
 			}
 
 			if($_GET["role"] == "projectManager"){

@@ -33,4 +33,20 @@
 	<div class="col l8 offset-l2" id="creation">
 
 	</div>
+	<div class="col l8 offset-l2" id="uploadFile">
+		<form action="./app/controller/ProjectManager/uploadFile.php" method="post" enctype="multipart/form-data">
+	        <h2>Upload CV</h2>
+	        <label for="fileUpload">CV:</label>
+	        <input type="file" name="cv" id="fileUpload">
+	        <input type="submit" name="submit" value="Upload">
+	        <p><strong>Note:</strong> Seuls les fichiers pdf sont autorisés jusqu'à une taille maximale de 5 Mo.</p>
+	    </form>
+	    <?php
+	    	if(isset($_GET["upload"]) && $_GET["upload"] == "fail"){
+	    		echo "Le fichier existe déjà dans le dossier";
+	    	}elseif(isset($_GET["upload"]) && $_GET["upload"] == "success"){
+	    		echo "Le fichier à bien était téléversé";
+	    	}
+	    ?>
+	</div>
 </div>

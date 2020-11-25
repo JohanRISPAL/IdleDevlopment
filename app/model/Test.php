@@ -34,5 +34,18 @@ class Test{
 	public function setInformationDay_ID($_informationDay_ID){
 		$this->_informationDay_ID = $_informationDay_ID;
 	}
+
+	public function getTest($bdd){
+		$query = $bdd->prepare("SELECT * FROM test");
+		$query->execute();
+		$queryResult = $query->fetchAll();
+
+		$test = array();
+
+		foreach ($queryResult as $q) {
+			array_push($test, New Test($q["id"], $q["label"], $q["informationDay_ID"]));
+		}
+		return $test;
+	}
 }
 ?>

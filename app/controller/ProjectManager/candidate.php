@@ -8,7 +8,7 @@
 
 		$allCandidat = Candidate::getCandidate($bdd);
 		
-		include("./app/view/page/ProjectManager/candidat.php");
+		include("./app/view/page/ProjectManager/candidate.php");
 
 	}catch(PDOException $e){
 		echo "Dommage va chercher dans ton code où tu as fais l'erreur" . $e->getMessage();

@@ -408,4 +408,135 @@
 		$query->bindParam(':question_ID', $question_ID[0], PDO::PARAM_INT);
 		$query->execute();
 	}
+
+	function getInformationDay(){
+		$bdd = getConnexion();
+
+		$query = $bdd->prepare("SELECT * FROM informationDay");
+		$query->execute();
+
+		$queryResult = $query->fetchAll();
+
+		$informationDays = array();
+
+		foreach($queryResult as $q){
+			array_push($informationDays, [$q["id"], $q["label"], $q["dateOfDay"]]);
+		}
+
+		echo json_encode($informationDays);
+	}
+
+	function createTest(){
+		$bdd = getConnexion();
+
+		$query = $bdd->prepare("INSERT INTO test (label, informationDay_ID) VALUES (:label, :informationDay_ID)");
+		$query->bindParam(':label', $_POST["label"], PDO::PARAM_STR);
+		$query->bindParam(':informationDay_ID', $_POST["informationDay_ID"], PDO::PARAM_INT);
+		$query->execute();
+	}
+
+	function getTestByID(){
+		$bdd = getConnexion();
+
+		$query = $bdd->prepare("SELECT * FROM test WHERE id = :id");
+		$query->bindParam(':id', $_POST["test_ID"], PDO::PARAM_INT);
+		$query->execute();
+
+		$queryResult = $query->fetchAll();
+
+		$test = array();
+
+		foreach($queryResult as $q){
+			array_push($test, [$q["id"], $q["label"], $q["informationDay_ID"]]);
+		}
+
+		echo json_encode($test);
+	}
+
+	function getInformationDayById(){
+		$bdd = getConnexion();
+
+		$query = $bdd->prepare("SELECT * FROM informationDay WHERE id = :id");
+		$query->bindParam(':id', $_POST["informationDay_ID"], PDO::PARAM_INT);
+		$query->execute();
+
+		$queryResult = $query->fetchAll();
+
+		$informationDays = array();
+
+		foreach($queryResult as $q){
+			array_push($informationDays, [$q["id"], $q["label"], $q["dateOfDay"]]);
+		}
+
+		echo json_encode($informationDays);
+	}
+
+	function updateTest(){
+		$bdd = getConnexion();
+
+		$query = $bdd->prepare("UPDATE test SET label = :label, informationDay_ID = :informationDay_ID WHERE id = :id ");
+		$query->bindParam(":label", $_POST["label"], PDO::PARAM_STR);
+		$query->bindParam(":informationDay_ID", $_POST["informationDay_ID"], PDO::PARAM_INT);
+		$query->bindParam(":id", $_POST["id"], PDO::PARAM_INT);
+		$query->execute();
+	}
+
+	function deleteTest(){
+		$bdd = getConnexion();
+
+		$query = $bdd->prepare("DELETE FROM test WHERE id = :id");
+		$query->bindParam(':id', $_POST["id"], PDO::PARAM_INT);
+		$query->execute();
+	}
+
+	function getQuestion(){
+		$bdd = getConnexion();
+
+		$query = $bdd->prepare("SELECT * FROM question WHERE test_ID IS NULL");
+		$query->execute();
+
+		$queryResult = $query->fetchAll();
+
+		$questions = array();
+
+		foreach($queryResult as $q){
+			array_push($questions, [$q["id"], $q["label"]]);
+		}
+
+		echo json_encode($questions);
+	}
+
+	function putQuestionInTest(){
+		$bdd = getConnexion();
+
+		$query = $bdd->prepare("UPDATE question SET test_ID = :test_ID WHERE id = :id");
+		$query->bindParam(":test_ID", $_POST["test_ID"], PDO::PARAM_STR);
+		$query->bindParam(":id", $_POST["id"], PDO::PARAM_INT);
+		$query->execute();
+	}
+
+	function getQuestionByTest(){
+		$bdd = getConnexion();
+		
+		$query = $bdd->prepare("SELECT * FROM question WHERE test_ID = :test_ID");
+		$query->bindParam(":test_ID", $_POST["test_ID"], PDO::PARAM_INT);
+		$query->execute();
+		$queryResult = $query->fetchAll();
+
+		$questions = array();
+
+		foreach($queryResult as $q){
+			array_push($questions, [$q["id"], $q["label"], $q["isEliminatory"], $q["level_ID"], $q["domain_ID"], $q["test_ID"]]);
+		}
+
+		echo json_encode($questions);
+	}
+
+	function removeQuestionTest(){
+		$bdd = getConnexion();
+		
+		$query = $bdd->prepare("UPDATE question SET test_ID = NULL WHERE id = :id");
+		$query->bindParam(":id", $_POST["id"], PDO::PARAM_INT);
+		$query->execute();
+	}
 ?>

@@ -3,7 +3,11 @@
 	try {
 		$bdd = new PDO('mysql:host=localhost;dbname=idledevlopment;charset=utf8', 'root', 'root');
 		$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		
+
+		include("./app/Model/Test.php");
+
+		$test = Test::getTest($bdd);
+
 		include("./app/view/page/Admin/test.php");
 
 	}catch(PDOException $e){

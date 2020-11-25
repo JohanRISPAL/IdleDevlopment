@@ -1,7 +1,7 @@
 $( document ).ready(function(){
 
     $("#pageCandidat").click(function(event){
-        document.location.href="http://localhost/idleDevlopment/index.php?p=candidat&role=projectManager";
+        document.location.href="http://localhost/idleDevlopment/index.php?p=candidate&role=projectManager";
     });
 
     $("#pageInfoDay").click(function(event){
