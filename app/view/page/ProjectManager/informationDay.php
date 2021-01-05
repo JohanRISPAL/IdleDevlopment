@@ -11,6 +11,14 @@
 		<h1 class="col l10">Liste des journées d'information</h1>
 		<button class="col l1 offset-l1" id="createInformationDay"><i class="material-icons">add</i></button>
 	</div>
+
+	<div class="col l8 offset-l2" id="creation">
+		<p>Nom de la journée d'information</p>
+		<input type="text" id="informationDayLabel">
+		<p>Date de la journée d'information</p>
+		<input type="date" id="informationDayDate">
+		<button id="informationDayCreationButton">Créer</button>
+	</div>	
 	
 	<div class="col l8 offset-l2" id="informationDayList">
 		<?php
@@ -32,7 +40,5 @@
 			}	
 		?>
 	</div>
-	<div class="col l8 offset-l2" id="creation">
-
-	</div>
+	
 </div>

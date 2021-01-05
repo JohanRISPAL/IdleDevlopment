@@ -1,0 +1,243 @@
+h1{
+	margin-top: 0 !important;
+	font-family: 'Poiret One', cursive;
+	color: #27496D;
+}
+
+#pageContent{
+	text-align: center;
+}
+
+h3{
+	font-family: 'Poiret One', cursive;
+	color: #27496D;
+}
+
+/*style des bouttons*/
+.buttonTest{
+	margin: 2% auto;
+	border-radius: 25px;
+	padding: 2%;
+	border: 1px white solid;
+	background-color: #142850;
+	color: white;
+	width: 100%;
+}
+
+.buttonTest:hover{
+	background-color: #274f9c;
+	cursor: pointer;
+}
+
+#testContainer{
+	margin-top: 2vh;
+}
+
+#labelTestContainer, #informationDayTestContainer{
+	display: flex;
+	justify-content: center;
+}
+
+#labelTestContainer p, #informationDayTestContainer p {
+	margin-right: 2%;
+	font-family: 'Audiowide', cursive;
+	color: #27496D;
+}
+
+#labelTestContainer input{
+	text-align: center;
+	width: 30%;
+	border: 1px solid #27496D;
+	border-radius: 25px;
+}
+
+#informationDayTestContainer select{
+	text-align: center;
+	width: 35%;
+	border: 1px solid #27496D;
+	border-radius: 25px;
+	background-color: #DAE1E7;
+}
+
+#modifTestButton, #confirmModifTestButton, #supprTestButton{
+	margin: 2% auto;
+	padding: 0.5% 0;
+	border-radius: 25px;
+	border: 1px white solid;
+	background-color: #142850;
+	color: white;
+	width: 10%;
+}
+
+#confirmModifTestButton{
+	background-color: #0f3d10;
+}
+
+#supprTestButton{
+	background-color: #681a1b;
+}
+
+#modifTestButton:hover{
+	background-color: #274f9c;
+	cursor: pointer;
+}
+
+#confirmModifTestButton:hover{
+	background-color: #1e771f;
+	cursor: pointer;
+}
+
+#supprTestButton:hover{
+	background-color: #a3292a;
+	cursor: pointer;
+}
+
+#questionContent{
+	display: flex;
+	margin-top: 5vh;
+	flex-wrap: wrap; 
+}
+
+.labelQuestion{
+	display: flex;
+	width: 100%;
+	height: 5vh;
+	margin: 1% 0;
+}
+
+.labelQuestion p{
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-right: 2%;
+	padding: 0.5% 0;
+	width: 75%;
+	border: 1px solid #27496D;
+	border-radius: 25px;
+	align-self: center;
+}
+
+.labelQuestion button{
+	width: 13%;
+	height: 60%;
+	border-radius: 25px;
+	border: 1px white solid;
+	background-color: #142850;
+	color: white;
+	align-self: center;
+}
+
+.labelQuestion button:hover{
+	background-color: #274f9c;
+	cursor: pointer;
+}
+
+.labelQuestion label{
+	margin-right: 2%;
+	width: 10%;
+	font-size: 1rem;
+	font-family: 'Audiowide', cursive;
+	color: #27496D;
+	align-self: center;
+}
+
+.createTest{
+	width: 100%;
+	padding: 2%;
+	border-radius: 25px;
+	border: 1px white solid;
+	background-color: #142850;
+	color: white;
+	align-self: center;
+	margin-bottom: 3vh;
+}
+
+.createTest:hover{
+	background-color: #274f9c;
+	cursor: pointer;
+}
+
+#addQuestion{
+	display: flex;
+	justify-content: center;
+}
+
+#addQuestion select{
+	margin-top: 2vh;
+	text-align: center;
+	width: 75%;
+	border: 1px solid #27496D;
+	border-radius: 25px;
+	background-color: #DAE1E7;
+}
+
+#addQuestionButton{
+	width: 15%;
+	height: 60%;
+	padding: 2px;
+	border-radius: 25px;
+	border: 1px white solid;
+	background-color: #142850;
+	color: white;
+	align-self: center;
+}
+
+#addQuestionButton:hover{
+	background-color: #274f9c;
+	cursor: pointer;
+}
+
+#creationTestContainer {
+	margin-top: 2vh;
+}
+
+#creationTestContainer p{
+	width: 20%;
+	font-family: 'Audiowide', cursive;
+	color: #27496D;
+}
+
+.testLabel{
+	display: flex;
+	justify-content: center;
+	margin-top: 5vh;
+}
+
+#testLabel{
+	text-align: center;
+	width: 30%;
+	border: 1px solid #27496D;
+	border-radius: 25px;
+}
+
+.testInformationDay{
+	display: flex;
+	justify-content: center;
+}
+
+.testInformationDay p {
+	
+}
+
+#informationDayDropdown{
+	text-align: center;
+	width: 35%;
+	border: 1px solid #27496D;
+	border-radius: 25px;
+	background-color: #DAE1E7;
+}
+
+/*style des bouttons*/
+#testCreate{
+	margin: 2% auto;
+	border-radius: 25px;
+	padding: 0.5%;
+	border: 1px white solid;
+	background-color: #142850;
+	color: white;
+	width: 15%;
+}
+
+#testCreate:hover{
+	background-color: #274f9c;
+	cursor: pointer;
+}

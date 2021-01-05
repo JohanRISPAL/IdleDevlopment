@@ -1,0 +1,8 @@
+div{
+	min-height: 100px;
+}
+
+[type="radio"]:not(:checked), [type="radio"]:checked {
+    opacity: 1 !important;
+    pointer-events: initial !important;
+}

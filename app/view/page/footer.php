@@ -6,11 +6,18 @@
 		if(isset($_GET["role"]) AND isset($_GET["p"])){
 
 			if($_GET["role"] == "candidat"){
-				echo '<script src="./app/view/assets/js/Candidat/connexion.js"></script>';
+				if($_GET["p"] == "connexion"){
+					echo '<script src="./app/view/assets/js/Candidat/connexion.js"></script>';
+				}
+				elseif($_GET["p"] == "testBegin"){
+					echo '<script src="./app/view/assets/js/Candidat/testBegin.js"></script>';
+				}
+				elseif($_GET["p"] == "testStarted"){
+					echo '<script src="./app/view/assets/js/Candidat/testStarted.js"></script>';
+				}
 			}
 
 			if($_GET["role"] == "admin"){
-				echo '<script src="./app/view/assets/js/Admin/navBar.js"></script>';
 				if($_GET["p"] == "connexion"){
 					echo '<script src="./app/view/assets/js/Admin/connexion.js"></script>';
 				}
@@ -26,7 +33,6 @@
 			}
 
 			if($_GET["role"] == "projectManager"){
-				echo '<script src="./app/view/assets/js/ProjectManager/navBar.js"></script>';
 				if($_GET["p"] == "connexion"){
 					echo '<script src="./app/view/assets/js/ProjectManager/connexion.js"></script>';
 				}elseif($_GET["p"] == "candidat"){

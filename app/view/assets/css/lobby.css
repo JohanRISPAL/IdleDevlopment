@@ -1,0 +1,95 @@
+/*mise en couleur du font*/
+#topPage{
+	height: 60vh;
+	background-color: #00909E;
+}
+
+#footPage{
+	height: 40vh;
+	background-color: #DAE1E7;
+}
+
+h4{
+	margin-top: 0 !important;
+	margin-bottom: 2.5vh !important;
+	font-family: 'Audiowide', cursive;
+	color: #4f3f40;
+}
+
+/*alignement et style de la div qui contient champs de connexion*/
+#selectRole{
+	text-align: center;
+	margin-top: 25vh;
+	padding: 5vh;
+}
+
+#candidateConnexion{
+	background-color: #F8F8F8;
+	border-radius: 25px;
+	border: 3px solid #27496D;
+	padding: 1%;
+	margin-left: 0;
+}
+
+#candidateConnexion input{
+	text-align: center;
+	border: 1px solid #27496D !important;
+	border-radius: 25px !important;
+}
+
+#adminConnexion{
+	background-color: #F8F8F8;
+	border-radius: 25px;
+	border: 3px solid #27496D;
+	padding: 1%;
+	margin-left: 0;
+}
+
+#adminConnexion input{
+	text-align: center;
+	border: 1px solid #27496D !important;
+	border-radius: 25px !important;
+}
+
+#projectManagerConnexion{
+	background-color: #F8F8F8;
+	border-radius: 25px;
+	border: 3px solid #27496D;
+	padding: 1%;
+	margin-left: 0;
+}
+
+#projectManagerConnexion input{
+	text-align: center;
+	border: 1px solid #27496D !important;
+	border-radius: 25px !important;
+}
+
+/*style du titre*/
+#selectRole h1{
+	font-family: 'Audiowide', cursive;
+	color: #fff;
+	margin-top: 0;
+}
+
+.buttonRoleContainer{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	margin-top: 10vh;
+}
+
+/*style des bouttons*/
+.buttonConnexion{
+	border-radius: 25px;
+	padding: 2%;
+	border: 1px white solid;
+	background-color: #142850;
+	color: white;
+	width: 35%;
+}
+
+.buttonConnexion:hover{
+	background-color: #274f9c;
+	cursor: pointer;
+}

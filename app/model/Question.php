@@ -64,5 +64,148 @@ class Question{
 	public function setTest_ID($_test){
 		$this->_test_ID = $_test_ID;
 	}
+
+	public function getObjectVars(){
+		return get_object_vars($this); 
+	}
 }
+
+	if (isset($_POST["method"]))
+	{
+		if (!empty($_POST["method"]))
+		{
+			echo $_POST["method"]();
+		}
+	}
+
+	function getConnexion()
+	{
+		$bdd = new PDO('mysql:host=localhost;dbname=idledevlopment;charset=utf8', 'root', 'root');
+
+		return $bdd;
+	}
+
+	function getQuestion(){
+		$bdd = getConnexion();
+
+		$query = $bdd->prepare("SELECT * FROM question");
+		$query->execute();
+
+		$queryResult = $query->fetchAll();
+
+		$questions = array();
+
+		foreach($queryResult as $q){
+			$question = New Question($q["id"], $q["label"], $q["isEliminatory"], $q["level_ID"], $q["domain_ID"], $q["test_ID"]);
+			$questionObjectVars = $question->getObjectVars();
+			array_push($questions, $questionObjectVars);
+		}
+
+		echo json_encode($questions);
+	}
+
+	function getQuestionById(){
+		$bdd = getConnexion();
+
+		$query = $bdd->prepare("SELECT * FROM question WHERE id = :id");
+		$query->bindParam(':id', $_POST["id"], PDO::PARAM_STR);
+		$query->execute();
+
+		$queryResult = $query->fetchAll();
+
+		$questions = array();
+
+		foreach($queryResult as $q){
+			$question = New Question($q["id"], $q["label"], $q["isEliminatory"], $q["level_ID"], $q["domain_ID"], $q["test_ID"]);
+			$questionObjectVars = $question->getObjectVars();
+			array_push($questions, $questionObjectVars);
+		}
+
+		echo json_encode($questions);
+	}
+
+	function createQuestion(){
+		$bdd = getConnexion();
+		$query = $bdd->prepare("INSERT INTO question (label, isEliminatory, level_ID, domain_ID, test_ID) VALUES (:label, :isEliminatory, :level_ID, :domain_ID, null)");
+		$query->bindParam(':label', $_POST["label"], PDO::PARAM_STR);
+		$query->bindParam(':isEliminatory', $_POST["isEliminatory"], PDO::PARAM_INT);
+		$query->bindParam(':level_ID', $_POST["level_ID"], PDO::PARAM_INT);
+		$query->bindParam(':domain_ID', $_POST["domain_ID"], PDO::PARAM_INT);
+		$query->execute();
+	}
+
+	function getQuestionWithoutTest(){
+		$bdd = getConnexion();
+
+		$query = $bdd->prepare("SELECT * FROM question WHERE test_ID IS NULL");
+		$query->execute();
+
+		$queryResult = $query->fetchAll();
+
+		$questions = array();
+
+		foreach($queryResult as $q){
+			$question = New Question($q["id"], $q["label"], $q["isEliminatory"], $q["level_ID"], $q["domain_ID"], $q["test_ID"]);
+			$questionObjectVars = $question->getObjectVars();
+			array_push($questions, $questionObjectVars);
+		}
+
+		echo json_encode($questions);
+	}
+
+	function putQuestionInTest(){
+		$bdd = getConnexion();
+
+		$query = $bdd->prepare("UPDATE question SET test_ID = :test_ID WHERE id = :id");
+		$query->bindParam(":test_ID", $_POST["test_ID"], PDO::PARAM_STR);
+		$query->bindParam(":id", $_POST["id"], PDO::PARAM_INT);
+		$query->execute();
+	}
+
+	function removeQuestionTest(){
+		$bdd = getConnexion();
+		
+		$query = $bdd->prepare("UPDATE question SET test_ID = NULL WHERE id = :id");
+		$query->bindParam(":id", $_POST["id"], PDO::PARAM_INT);
+		$query->execute();
+	}
+
+	function getQuestionByTest(){
+		$bdd = getConnexion();
+
+		$query = $bdd->prepare("SELECT question.id, question.label, question.isEliminatory, question.level_ID, question.domain_ID, question.test_ID FROM question INNER JOIN test ON test.id = question.test_ID WHERE test.id = :test_ID");
+		$query->bindParam(":test_ID", $_POST["test_ID"], PDO::PARAM_INT);
+		$query->execute();
+		$queryResult = $query->fetchAll();
+
+		$questions = array();
+
+		foreach($queryResult as $q){
+			$question = New Question($q["id"], $q["label"], $q["isEliminatory"], $q["level_ID"], $q["domain_ID"], $q["test_ID"]);
+			$questionObjectVars = $question->getObjectVars();
+			array_push($questions, $questionObjectVars);
+		}
+
+		echo json_encode($questions);
+	}
+
+	function updateQuestion(){
+		$bdd = getConnexion();
+
+		$query = $bdd->prepare("UPDATE question SET label = :label, isEliminatory = :isEliminatory, level_ID = :level_ID, domain_ID = :domain_ID WHERE id = :id");
+		$query->bindParam(":label", $_POST["label"], PDO::PARAM_STR);
+		$query->bindParam(":isEliminatory", $_POST["isEliminatory"], PDO::PARAM_INT);
+		$query->bindParam(":level_ID", $_POST["level_ID"], PDO::PARAM_INT);
+		$query->bindParam(":domain_ID", $_POST["domain_ID"], PDO::PARAM_INT);
+		$query->bindParam(":id", $_POST["id"], PDO::PARAM_INT);
+		$query->execute();
+	}
+
+	function deleteQuestion(){
+		$bdd = getConnexion();
+
+		$query = $bdd->prepare("DELETE FROM question WHERE id = :id");
+		$query->bindParam(":id", $_POST["id"], PDO::PARAM_INT);
+		$query->execute();
+	}
 ?>

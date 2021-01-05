@@ -1,8 +1,12 @@
-<div class="row">
-	<div class="col l12" id="navBar">
-		<button class="navButton" id="pageTest">Test</button>
-		<button class="navButton" id="pageQuestion">Question</button>
-		<button class="navButton" id="pageOrganisationQuestions">Organisation questions</button>
-		<button class="navButton" id="deconnexion"><i class="medium material-icons">power_settings_new</i></button>
+<section id="topPage">
+	<div class="row">
+		<div class="col l12" id="navBar">
+			<a href="http://localhost/idleDevlopment/index.php?p=test&role=admin">Test</a>
+			<a href="http://localhost/idleDevlopment/index.php?p=question&role=admin">Question</a>
+			<a href="http://localhost/idleDevlopment/index.php?p=organisationQuestions&role=admin">Organisation questions</a>
+			<a href="http://localhost/idleDevlopment/index.php?checkDeco=true"><i class="small material-icons">power_settings_new</i></a>
+		</div>
 	</div>
-</div>
+</section>
+<section id="pageContent">
+</section>

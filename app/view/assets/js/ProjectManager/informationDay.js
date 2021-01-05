@@ -2,40 +2,28 @@ $( document ).ready(function(){
 
     $(".confirmModifCandidat").hide();
     $(".supprCandidat").hide();
+    $("#creation").hide();
+
+    let candidateList = document.getElementById("candidateList");
 
     $("#createInformationDay").click(function(event){
+        $("#creation").show();
 
-        let divCreateCandidat = document.getElementById('creation');
+        $("#informationDayCreationButton").click(function(event){
+            let labelField = $("#informationDayLabel").val(),
+            dateField = $("#informationDayDate").val();
 
-        let labelField = document.createElement("input");
-        labelField.setAttribute("type", "text");
-        labelField.setAttribute("placeholder", "Label :");
-
-        let dateField = document.createElement("input");
-        dateField.setAttribute("type", "date");
-        dateField.setAttribute("placeholder", "Date de la journée :");
-
-        let buttonValidate = document.createElement("button");
-        buttonValidate.setAttribute("id", "validateButton");
-        buttonValidate.innerHTML = "Valider";
-
-        buttonValidate.onclick = function(event) {
             $.ajax({
-                data : {method : "createInformationDay", label : labelField.value, date : dateField.value},
+                data : {method : "createInformationDay", label : labelField, date : dateField},
                 type : "post",
-                url : "./app/view/assets/js/fonctionJs.php",
+                url : "./app/model/InformationDay.php",
                 success: function(response)
                 {
                     
                 }
             });
-        };
+        })
 
-        divCreateCandidat.appendChild(labelField);
-
-        divCreateCandidat.appendChild(dateField);
-
-        divCreateCandidat.appendChild(buttonValidate);
     });
 
 
@@ -55,7 +43,7 @@ $( document ).ready(function(){
             $.ajax({
                 data : {method : "updateInformationDay", label : label.value, date : date.value, id : id},
                 type : "post",
-                url : "./app/view/assets/js/fonctionJs.php",
+                url : "./app/model/InformationDay.php",
                 success: function(response)
                 {
                    
@@ -67,7 +55,7 @@ $( document ).ready(function(){
             $.ajax({
                 data : {method : "deleteInformationDay",  id : id},
                 type : "post",
-                url : "./app/view/assets/js/fonctionJs.php",
+                url : "./app/model/InformationDay.php",
                 success: function(response)
                 {
                    
@@ -77,23 +65,24 @@ $( document ).ready(function(){
     });
 
     $(".showCandidate").click(function(index){
+        candidateList.innerHTML = ""; 
         let id_informationDay = $(this).val();
         $.ajax({
         data : {method : "getCandidateByInformationDay",  informationDay_ID : id_informationDay},
         type : "post",
-        url : "./app/view/assets/js/fonctionJs.php",
+        url : "./app/model/Candidate.php",
             success: function(response) 
             {
-                let candidate = JSON.parse(response),
-                candidateList = document.getElementById("candidateList");
+                let candidate = JSON.parse(response);
+                
 
                 $.each(candidate, function(index, val){
-                    let id = val[0],
+                    let id = val["_id"],
                     candidateName = document.createElement("p");
-                    candidateName.innerHTML = val[1];
+                    candidateName.innerHTML = val["_name"];
 
                     let buttonSupprCandidate = document.createElement("button");
-                    buttonSupprCandidate.setAttribute("value", val[0]);
+                    buttonSupprCandidate.setAttribute("value", val["_id"]);
                     buttonSupprCandidate.innerHTML = "Delete";
 
                     candidateList.appendChild(candidateName);
@@ -103,7 +92,7 @@ $( document ).ready(function(){
                         $.ajax({
                             data : {method : "deleteCandidateInformationDay",  id : id},
                             type : "post",
-                            url : "./app/view/assets/js/fonctionJs.php",
+                            url : "./app/model/Candidate.php",
                             success: function(response)
                             {
                                
@@ -121,7 +110,7 @@ $( document ).ready(function(){
                         $.ajax({
                             data : {method : "getCandidateNotInInformationDay", informationday_ID : id_informationDay},
                             type : "post",
-                            url : "./app/view/assets/js/fonctionJs.php",
+                            url : "./app/model/Candidate.php",
                             success: function(response)
                             {
                                 let candidate = JSON.parse(response),
@@ -135,15 +124,15 @@ $( document ).ready(function(){
                                 
                                 $.each(candidate, function(index, val){
                                     let option = document.createElement("option");
-                                    option.setAttribute('value', val[0]);
-                                    option.innerHTML= val[1] + " " + val[2];
+                                    option.setAttribute('value', val["_id"]);
+                                    option.innerHTML= val["_name"] + " " + val["_firstName"];
                                     dropdownCandidate.appendChild(option);
 
                                     option.onclick = function(event){
                                         $.ajax({
                                             data : {method : "addCandidateInInformationDay",  candidate_ID : option.value, informationDay_ID : id_informationDay},
                                             type : "post",
-                                            url : "./app/view/assets/js/fonctionJs.php",
+                                            url : "./app/model/Candidate.php",
                                             success: function(response)
                                             {
                                                

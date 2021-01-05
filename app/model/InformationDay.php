@@ -35,6 +35,10 @@ class InformationDay{
 		$this->_dateOfDay = $_dateOfDay;
 	}
 
+	public function getObjectVars(){
+		return get_object_vars($this); 
+	}
+
 	public function getInformationDay($bdd){
 		$query = $bdd->prepare("SELECT * FROM informationday");
 		$query->execute();
@@ -50,4 +54,83 @@ class InformationDay{
 
 
 }	
+
+	if (isset($_POST["method"]))
+	{
+		if (!empty($_POST["method"]))
+		{
+			echo $_POST["method"]();
+		}
+	}
+
+	function getConnexion()
+	{
+		$bdd = new PDO('mysql:host=localhost;dbname=idledevlopment;charset=utf8', 'root', 'root');
+
+		return $bdd;
+	}
+
+	function createInformationDay(){
+		$bdd = getConnexion();
+
+		$query = $bdd->prepare("INSERT INTO informationday (label, dateOfDay) VALUES (?, ?);");
+		$query->execute(array($_POST["label"], $_POST["date"]));
+	}
+
+	function updateInformationDay(){
+		$bdd = getConnexion();
+
+		$query = $bdd->prepare("UPDATE informationDay SET label = :label , dateOfDay = :dateDay  WHERE id = :id");
+		$query->bindParam(':label', $_POST["label"], PDO::PARAM_STR);
+		$query->bindParam(':dateDay', $_POST["date"], PDO::PARAM_STR);
+		$query->bindParam(':id', $_POST["id"], PDO::PARAM_INT);
+		$query->execute();
+	}
+
+	function deleteInformationDay(){
+		$bdd = getConnexion();
+
+		$query = $bdd->prepare("DELETE FROM informationDay WHERE id = :id");
+		$query->bindParam(':id', $_POST["id"], PDO::PARAM_INT);
+		$query->execute();		
+	}
+
+	function getInformationDay(){
+		$bdd = getConnexion();
+
+		$query = $bdd->prepare("SELECT * FROM informationDay");
+		$query->execute();
+
+		$queryResult = $query->fetchAll();
+
+		$informationDays = array();
+
+		foreach($queryResult as $q){
+			$informationDay = new InformationDay($q["id"], $q["label"], $q["dateOfDay"]);
+			$informationDayObjectVars = $informationDay->getObjectVars();
+			array_push($informationDays, $informationDayObjectVars);
+		}
+
+		echo json_encode($informationDays);
+	}
+
+	function getInformationDayById(){
+		$bdd = getConnexion();
+
+		$query = $bdd->prepare("SELECT * FROM informationDay WHERE id = :id");
+		$query->bindParam(':id', $_POST["informationDay_ID"], PDO::PARAM_INT);
+		$query->execute();
+
+		$queryResult = $query->fetchAll();
+
+		$informationDays = array();
+
+		foreach($queryResult as $q){
+			$informationDay = new InformationDay($q["id"], $q["label"], $q["dateOfDay"]);
+			$informationDayObjectVars = $informationDay->getObjectVars();
+			array_push($informationDays, $informationDayObjectVars);
+		}
+
+		echo json_encode($informationDays);
+	}
 ?>

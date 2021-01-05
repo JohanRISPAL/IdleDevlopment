@@ -21,7 +21,7 @@ $( document ).ready(function(){
         		$.ajax({
 	        		data : {method : "createDomain", label : label},
 	    			type : "post",
-	    			url : "./app/view/assets/js/fonctionJs.php",
+	    			url : "./app/model/Domain.php",
 	    			success: function(response)
 	                {
 	                    
@@ -53,7 +53,7 @@ $( document ).ready(function(){
     		$.ajax({
     			data : {method : "updateDomain", label : labelField.value, domain_ID : domain_ID},
 				type : "post",
-				url : "./app/view/assets/js/fonctionJs.php",
+				url : "./app/model/Domain.php",
 				success: function(response)
 	            {
 	                
@@ -65,7 +65,7 @@ $( document ).ready(function(){
 			$.ajax({
 	    		data : {method : "deleteDomain", domain_ID : domain_ID},
 				type : "post",
-				url : "./app/view/assets/js/fonctionJs.php",
+				url : "./app/model/Domain.php",
 				success: function(response)
 	            {
 	                
@@ -91,7 +91,7 @@ $( document ).ready(function(){
         		$.ajax({
 	        		data : {method : "createLevel", level : level},
 	    			type : "post",
-	    			url : "./app/view/assets/js/fonctionJs.php",
+	    			url : "./app/model/Level.php",
 	    			success: function(response)
 	                {
 	                    
@@ -123,7 +123,7 @@ $( document ).ready(function(){
     		$.ajax({
     			data : {method : "updateLevel", level : labelField.value, level_ID : level_ID},
 				type : "post",
-				url : "./app/view/assets/js/fonctionJs.php",
+				url : "./app/model/Level.php",
 				success: function(response)
 	            {
 	                
@@ -135,7 +135,7 @@ $( document ).ready(function(){
 			$.ajax({
 	    		data : {method : "deleteLevel", level_ID : level_ID},
 				type : "post",
-				url : "./app/view/assets/js/fonctionJs.php",
+				url : "./app/model/Level.php",
 				success: function(response)
 	            {
 	                

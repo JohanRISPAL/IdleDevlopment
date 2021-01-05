@@ -1,5 +1,7 @@
 <?php
 
+	session_start();
+	
 class ProjectManager{
 	private $_id;
 	private $_login;
@@ -65,6 +67,10 @@ class ProjectManager{
 		$this->_idRole = $_idRole;
 	}
 
+	public function getObjectVars(){
+		return get_object_vars($this); 
+	}
+
 	public function getProjectManager($bdd){
 		$query = $bdd->prepare("SELECT * FROM projectmanager");
 		$query->execute();
@@ -79,4 +85,65 @@ class ProjectManager{
 	}
 
 }
+
+
+	if (isset($_POST["method"]))
+	{
+		if (!empty($_POST["method"]))
+		{
+			echo $_POST["method"]();
+		}
+	}
+
+	function getConnexion()
+	{
+		$bdd = new PDO('mysql:host=localhost;dbname=idledevlopment;charset=utf8', 'root', 'root');
+
+		return $bdd;
+	}
+
+	function getProjectManager()
+	{
+		$bdd = getConnexion();
+		$query = $bdd->prepare("SELECT * FROM projectManager WHERE login = ? AND password = md5(?)");
+		$query->bindParam(':login', $login, PDO::PARAM_STR);
+		$query->bindParam(':password', $password, PDO::PARAM_STR);
+		$query->execute(array($_POST["user"], $_POST["pass"]));
+
+		$queryResult = $query->fetchAll();
+
+		if ($query->rowCount() != 0)
+		{
+			$boolean = true;
+			$_SESSION["user"] = $_POST["user"];
+            $_SESSION["id"] = $queryResult[0]["id"];
+		}
+
+		else 
+		{
+			$boolean = false;
+		}
+
+		echo json_encode($boolean);
+	}
+
+	function getProjectManagerOfPlaning()
+	{
+		$bdd = getConnexion();
+		$query = $bdd->prepare("SELECT * FROM projectmanager INNER JOIN planing_hour ON planing_hour.projectManager_ID = projectmanager.id INNER JOIN planing ON planing.id = planing_hour.planing_ID WHERE planing.id = :planing_ID");
+		$query->bindParam(':planing_ID', $_POST["planing_ID"], PDO::PARAM_INT);
+		$query->execute();
+
+		$queryResult = $query->fetchAll();
+
+		$projectManagers = array();
+
+		foreach ($queryResult as $q) {
+			$projectManager = New ProjectManager($q["id"], $q["login"], $q["password"], $q["name"], $q["firstname"], $q["docket_ID"]);
+			$projectManagerObjectVars = $projectManager->getObjectVars();
+			array_push($projectManagers, $projectManagerObjectVars);
+		}
+
+		echo json_encode($projectManagers);
+	}
 ?>

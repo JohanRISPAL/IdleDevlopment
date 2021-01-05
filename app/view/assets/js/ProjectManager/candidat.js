@@ -31,7 +31,7 @@ $( document ).ready(function(){
             $.ajax({
                 data : {method : "createCandidate", name : nameField.value, firstName : firstNameField.value, birthday : birthdayField.value, poleEmploiNumber : poleEmploiNumberField.value},
                 type : "post",
-                url : "./app/view/assets/js/fonctionJs.php",
+                url : "./app/model/Candidate.php",
                 success: function(response)
                 {
                     
@@ -70,7 +70,7 @@ $( document ).ready(function(){
             $.ajax({
                 data : {method : "updateCandidate", name : name.value, firstName : firstName.value, birthday : birthday.value, poleEmploiNumber : poleEmploiNumber.value, id : id},
                 type : "post",
-                url : "./app/view/assets/js/fonctionJs.php",
+                url : "./app/model/Candidate.php",
                 success: function(response)
                 {
                    
@@ -82,7 +82,7 @@ $( document ).ready(function(){
             $.ajax({
                 data : {method : "deleteCandidate",  id : id},
                 type : "post",
-                url : "./app/view/assets/js/fonctionJs.php",
+                url : "./app/model/Candidate.php",
                 success: function(response)
                 {
                    

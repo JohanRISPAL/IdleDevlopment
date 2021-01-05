@@ -148,6 +148,13 @@ CREATE TABLE Question_Media(
 	PRIMARY KEY (id)
 )	DEFAULT CHARSET=utf8;
 
+CREATE TABLE Test_Complete(
+	id int(11) NOT NULL AUTO_INCREMENT,
+	candidate_ID int(11),
+	test_ID int(11),
+	PRIMARY KEY (id)
+)	DEFAULT CHARSET=utf8;
+
 ALTER TABLE Candidate
 ADD CONSTRAINT docket_Candidate_ID
 FOREIGN KEY (docket_ID)
@@ -262,6 +269,16 @@ ALTER TABLE Question_Media
 ADD CONSTRAINT question_media_question_ID
 FOREIGN KEY (question_ID)
 REFERENCES Question(id);
+
+ALTER TABLE Test_Complete
+ADD CONSTRAINT test_complete_Test_ID
+FOREIGN KEY (test_ID)
+REFERENCES Test(id);
+
+ALTER TABLE Test_Complete
+ADD CONSTRAINT test_complete_Candidate_ID
+FOREIGN KEY (candidate_ID)
+REFERENCES Candidate(id);
 
 INSERT INTO Docket (label)
 VALUES ("Candidat"),

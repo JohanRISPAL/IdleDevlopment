@@ -1,0 +1,16 @@
+h1{
+	margin-top: 0 !important;
+	font-family: 'Poiret One', cursive;
+	color: #27496D;
+}
+
+h3{
+	font-family: 'Poiret One', cursive;
+	color: #27496D;
+}
+
+[type="radio"]:not(:checked), [type="radio"]:checked{
+	opacity: 1 !important;
+	pointer-events: auto !important;
+	cursor: pointer;
+}

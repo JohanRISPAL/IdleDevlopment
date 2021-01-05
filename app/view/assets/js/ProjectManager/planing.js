@@ -10,7 +10,7 @@ $( document ).ready(function(){
         $.ajax({
             data : {method : "getPlaningOfInformationDay", informationDay_ID : informationDay_ID},
             type : "post",
-            url : "./app/view/assets/js/fonctionJs.php",
+            url : "./app/model/Planing.php",
             success: function(response)
             {
                 projectManagerContainer.style.display = "block";
@@ -24,19 +24,19 @@ $( document ).ready(function(){
                 candidateContainer.appendChild(addButton);
 
                 $.each(planing, function(index, val){
-                    let planing_ID = val[0],
+                    let planing_ID = val["_id"],
                     projectManager_ID = 0;
                     $.ajax({
                         data : {method : "getProjectManagerOfPlaning", planing_ID : planing_ID},
                         type : "post",
-                        url : "./app/view/assets/js/fonctionJs.php",
+                        url : "./app/model/ProjectManager.php",
                         success: function(response)
                         {
                             let projectManager = JSON.parse(response),
                             projectMangerName = document.createElement("p");
-                            projectManager_ID = projectManager[0];
+                            projectManager_ID = projectManager["_id"];
 
-                            projectMangerName.innerHTML = projectManager[2] + " " + projectManager[1];
+                            projectMangerName.innerHTML = projectManager["_firstName"] + " " + projectManager["_name"];
 
                             projectManagerContainer.appendChild(projectMangerName);
                         }
@@ -44,7 +44,7 @@ $( document ).ready(function(){
                     $.ajax({
                         data : {method : "getCandidateOfPlaning", informationDay_ID : informationDay_ID, planing_ID : planing_ID},
                         type : "post",
-                        url : "./app/view/assets/js/fonctionJs.php",
+                        url : "./app/model/Candidate.php",
                         success: function(response)
                         {
                            let candidate = JSON.parse(response);
@@ -53,11 +53,11 @@ $( document ).ready(function(){
                                 let candidateName = document.createElement("p"),
                                 candidateHour = document.createElement("p");
 
-                                candidateName.innerHTML = val[1] + " " + val[2];
-                                candidateHour.innerHTML = val[3];
+                                candidateName.innerHTML = val["_name"] + " " + val["_firstName"];
+                                candidateHour.innerHTML = val["_label"];
 
                                 let buttonDeleteCandidate = document.createElement("button");
-                                buttonDeleteCandidate.setAttribute("value", val[0]);
+                                buttonDeleteCandidate.setAttribute("value", val["_id"]);
                                 buttonDeleteCandidate.innerHTML = "Delete";
 
                                 candidateContainer.appendChild(candidateName);
@@ -69,7 +69,7 @@ $( document ).ready(function(){
                                    $.ajax({
                                         data : {method : "deleteCandidateInPlaning",  candidate_ID : candidate_ID, planing_ID : planing_ID},
                                         type : "post",
-                                        url : "./app/view/assets/js/fonctionJs.php",
+                                        url : "./app/model/Candidate.php",
                                         success: function(response)
                                         {
                                            
@@ -84,7 +84,7 @@ $( document ).ready(function(){
                     $.ajax({
                         data : {method : "getEmptyHourInPlaning", planing_ID : planing_ID},
                         type : "post",
-                        url : "./app/view/assets/js/fonctionJs.php",
+                        url : "./app/model/Hour.php",
                         success: function(response)
                         {
                             let emptyHour = JSON.parse(response);
@@ -92,7 +92,7 @@ $( document ).ready(function(){
                             $.ajax({
                                 data : {method : "getCandidateNotInPlaning", planing_ID : planing_ID},
                                 type : "post",
-                                url : "./app/view/assets/js/fonctionJs.php",
+                                url : "./model/Candidate.php",
                                 success: function(response){   
                                     let candidate = JSON.parse(response),
                                     dropdownCandidate = document.createElement("select");
@@ -105,8 +105,8 @@ $( document ).ready(function(){
 
                                     $.each(candidate, function(index, val){
                                         let option = document.createElement("option");
-                                        option.setAttribute('value', val[0]);
-                                        option.innerHTML= val[1] + " " + val[2];
+                                        option.setAttribute('value', val["_id"]);
+                                        option.innerHTML= val["_name"] + " " + val["_firstName"];
                                         dropdownCandidate.appendChild(option);
 
                                         option.onclick = function(event){
@@ -114,7 +114,7 @@ $( document ).ready(function(){
                                                 $.ajax({
                                                     data : {method : "addCandidateInPlaning",  candidate_ID : option.value, hour_ID : emptyHour[0][0], planing_ID : planing_ID, projectManager_ID : projectManager_ID},
                                                     type : "post",
-                                                    url : "./app/view/assets/js/fonctionJs.php",
+                                                    url : "./app/model/Candidate.php",
                                                     success: function(response)
                                                     {
                                                        

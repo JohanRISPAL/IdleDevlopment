@@ -1,5 +1,7 @@
 <?php
 
+	session_start();
+
 class Admin{
 	private $_id;
 	private $_login;
@@ -65,6 +67,10 @@ class Admin{
 		$this->_idRole = $_idRole;
 	}
 
+	public function getObjectVars(){
+		return get_object_vars($this); 
+	}
+
 	public function getAdmin($bdd){
 		$query = $bdd->prepare("SELECT * FROM admin");
 		$query->execute();
@@ -79,4 +85,43 @@ class Admin{
 	}
 
 }
+
+	if (isset($_POST["method"]))
+	{
+		if (!empty($_POST["method"]))
+		{
+			echo $_POST["method"]();
+		}
+	}
+
+	function getConnexion()
+	{
+		$bdd = new PDO('mysql:host=localhost;dbname=idledevlopment;charset=utf8', 'root', 'root');
+
+		return $bdd;
+	}
+
+	function getAdmin()
+	{
+		$bdd = getConnexion();
+		$query = $bdd->prepare("SELECT * FROM admin WHERE login = ? AND password = md5(?)");
+		$query->execute(array($_POST["user"], $_POST["pass"]));
+
+		$queryResult = $query->fetchAll();
+
+		if ($query->rowCount() != 0)
+		{
+			$boolean = true;
+			$_SESSION["user"] = $_POST["user"];
+            $_SESSION["id"] = $queryResult[0]["id"];
+		}
+
+		else 
+		{
+			$boolean = false;
+		}
+		
+
+		echo json_encode($boolean);
+	}
 ?>

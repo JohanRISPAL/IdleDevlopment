@@ -1,0 +1,41 @@
+#topPage{
+	height: 7.5vh;
+	background-color: #00909E;
+}
+
+#pageContent{
+	height: 92.5vh;
+	background-color: #DAE1E7;
+}
+
+#navBar{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 7.5vh;
+}
+
+a{
+	font-family: 'Audiowide', cursive;
+	color: white !important;
+	margin: 0 2%;
+}
+
+a:after{
+	content: '';
+	display: block;
+	width: 0;
+	height: 2px;
+	border: 0;
+	background-color: white;
+	margin: 10px auto 0 auto;
+	transition: width 1s;
+}
+
+a:hover:after{
+	width: 80%;
+}
+
+.row{
+	margin-bottom: 0 !important;
+}
