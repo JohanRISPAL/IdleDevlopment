@@ -11,7 +11,7 @@
 <section>
 	<div class="row">
 		<div class="col l6" id="containerDomain">
-			<h1>Liste des domaines de questions</h1>
+			<h3>Liste des domaines de questions</h3>
 			<button id="addDomain">Ajouter un domain</button>
 			<?php
 				if(!empty($domains)){
@@ -25,7 +25,7 @@
 			?>
 		</div>
 		<div class="col l6" id="containerLevel">
-			<h1>Liste des niveaux de questions</h1>
+			<h3>Liste des niveaux de questions</h3>
 			<button id="addLevel">Ajouter un niveau</button>
 			<?php
 				if(!empty($level)){

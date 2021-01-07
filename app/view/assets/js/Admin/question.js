@@ -24,7 +24,7 @@ $(document).ready(function(){
         }
     });
 
-    $("#buttonQuestionContainer").on("click", "#buttonQuestion", function(event){
+    $("#listQuestion").on("click", "#buttonQuestion", function(event){
     	$("#questionContainer").show();
     	$("#confirmModifQuestion").hide();
     	$("#supprQuestion").hide();

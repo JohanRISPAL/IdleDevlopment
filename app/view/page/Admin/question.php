@@ -12,51 +12,51 @@
 	<div class="row">
 		<div class="col l12">
 			<h1>Espaces questions</h1>
-			<div class="col l2" id="buttonQuestionContainer">
+			<div class="col l2" id="listQuestion">
 				<h3>Liste des questions crées</h3>
-				<button class="createButton">Créer une question</button>
+				<button class="createQuestion">Créer une question</button>
 			</div>
-			<div class="col l8" id="questionContainer">
-				<div class="labelQuestionContainer">
+			<div class="col l8" id="createdQuestionContainer">
+				<div class="labelCreatedQuestionContainer">
 					<label>Intitulé de la question</label>
-					</br><input class="style" type="text" id="labelQuestionCreated" disabled>
+					</br><input class="style" type="text" id="labelCreatedQuestion" disabled>
 				</div>
 
-				<div class="isEliminatoryContainer">
+				<div class="isEliminatoryCreatedContainer">
 					<label>Question éliminatoire</label>
-					<input type="checkbox" id="isELiminatoryCheckBox" disabled>
+					<input type="checkbox" id="isELiminatoryCreatedCheckBox" disabled>
 				</div>
 
-				<select id="dropdownDomainQuestion" disabled>
+				<select id="dropdownDomainCreatedQuestion" disabled>
 				</select>
 
-				<select id="dropdownLevelQuestion" disabled>
+				<select id="dropdownLevelCreatedQuestion" disabled>
 				</select>
 
-				<div class="answerContainer">
-					<div class="answer1Container">
-						<input type="hidden" id="hiddenAnswer1">
+				<div class="answerCreatedContainer">
+					<div class="answer1CreatedContainer">
+						<input type="hidden" id="hiddenAnswerCreated1">
 						<label>Réponse 1 vraie</label>
 						<input type="radio" name="radioAnswer" id="radioAnswerCreated1" value="1" disabled>
 						</br><input  class="style" type="text" id="labelAnswerCreated1" placeholder="Réponse 1" disabled>
 					</div>
 
-					<div class="answer2Container">
-						<input type="hidden" id="hiddenAnswer2">
+					<div class="answer2CreatedContainer">
+						<input type="hidden" id="hiddenAnswerCreated2">
 						<label>Réponse 2 vraie</label>
 						<input type="radio" name="radioAnswer" id="radioAnswerCreated2" value="2" disabled>
 						</br><input class="style" type="text" id="labelAnswerCreated2" placeholder="Réponse 2" disabled>
 					</div>
 
-					<div class="answer3Container">
-						<input type="hidden" id="hiddenAnswer3">
+					<div class="answer3CreatedContainer">
+						<input type="hidden" id="hiddenAnswerCreated3">
 						<label>Réponse 3 vraie</label>
 						<input type="radio" name="radioAnswer" id="radioAnswerCreated3" value="3" disabled>
 						</br><input class="style" type="text" id="labelAnswerCreated3" placeholder="Réponse 3" disabled>
 					</div>
 
-					<div class="answer4Container">
-						<input type="hidden" id="hiddenAnswer4">
+					<div class="answer4CreatedContainer">
+						<input type="hidden" id="hiddenAnswerCreated4">
 						<label>Réponse 4 vraie</label>
 						<input type="radio" name="radioAnswer" id="radioAnswerCreated4" value="4" disabled>
 						</br><input class="style" type="text" id="labelAnswerCreated4" placeholder="Réponse 4" disabled>
@@ -77,7 +77,7 @@
 
 				<div id="isEliminatoryContainer">
 					<label>Question éliminatoire</label>
-					<input type="checkbox" class="isELiminatoryCheckBox">
+					<input type="checkbox" id="isELiminatoryCheckBox">
 				</div>
 
 				<select id="dropdownDomain">
