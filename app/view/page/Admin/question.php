@@ -18,12 +18,12 @@
 			</div>
 			<div class="col l8" id="questionContainer">
 				<div class="labelQuestionContainer">
-					<p>Intitulé de la question</p>
-					<input type="text" id="labelQuestion" disabled>
+					<label>Intitulé de la question</label>
+					</br><input class="style" type="text" id="labelQuestionCreated" disabled>
 				</div>
 
 				<div class="isEliminatoryContainer">
-					<p>Question éliminatoire</p>
+					<label>Question éliminatoire</label>
 					<input type="checkbox" id="isELiminatoryCheckBox" disabled>
 				</div>
 
@@ -36,45 +36,47 @@
 				<div class="answerContainer">
 					<div class="answer1Container">
 						<input type="hidden" id="hiddenAnswer1">
+						<label>Réponse 1 vraie</label>
 						<input type="radio" name="radioAnswer" id="radioAnswerCreated1" value="1" disabled>
-						<p>Réponse 1 vraie</p>
-						<input type="text" id="labelAnswerCreated1" placeholder="Réponse 1" disabled>
+						</br><input  class="style" type="text" id="labelAnswerCreated1" placeholder="Réponse 1" disabled>
 					</div>
 
 					<div class="answer2Container">
 						<input type="hidden" id="hiddenAnswer2">
+						<label>Réponse 2 vraie</label>
 						<input type="radio" name="radioAnswer" id="radioAnswerCreated2" value="2" disabled>
-						<p>Réponse 2 vraie</p>
-						<input type="text" id="labelAnswerCreated2" placeholder="Réponse 2" disabled>
+						</br><input class="style" type="text" id="labelAnswerCreated2" placeholder="Réponse 2" disabled>
 					</div>
 
 					<div class="answer3Container">
 						<input type="hidden" id="hiddenAnswer3">
+						<label>Réponse 3 vraie</label>
 						<input type="radio" name="radioAnswer" id="radioAnswerCreated3" value="3" disabled>
-						<p>Réponse 3 vraie</p>
-						<input type="text" id="labelAnswerCreated3" placeholder="Réponse 3" disabled>
+						</br><input class="style" type="text" id="labelAnswerCreated3" placeholder="Réponse 3" disabled>
 					</div>
 
 					<div class="answer4Container">
 						<input type="hidden" id="hiddenAnswer4">
+						<label>Réponse 4 vraie</label>
 						<input type="radio" name="radioAnswer" id="radioAnswerCreated4" value="4" disabled>
-						<p>Réponse 4 vraie</p>
-						<input type="text" id="labelAnswerCreated4" placeholder="Réponse 4" disabled>
+						</br><input class="style" type="text" id="labelAnswerCreated4" placeholder="Réponse 4" disabled>
 					</div>
 				</div>
 
-				<button id="modifQuestion">Modidier la Question</button>
+				<button id="modifQuestion">Modifier la question</button>
 				<button id="confirmModifQuestion">Confirmer</button>
 				<button id="supprQuestion">Supprimer la question</button>
 			</div>
+
+
 			<div class="col l8" id="createQuestionContainer">
 				<div id="labelQuestionContainer">
-					<p>Intitulé de la question</p>
-					<input type="text" class="labelQuestion">
+					<label>Intitulé de la question</label>
+					</br><input class="style" type="text" id="labelQuestion">
 				</div>
 
 				<div id="isEliminatoryContainer">
-					<p>Question éliminatoire</p>
+					<label>Question éliminatoire</label>
 					<input type="checkbox" class="isELiminatoryCheckBox">
 				</div>
 
@@ -85,28 +87,28 @@
 				</select>
 
 				<div id="answerContainer">
-					<div id="answer1Container">
+					<div id="answer1Container" >
+						<label>Réponse 1 : vraie </label>
 						<input type="radio" name="radioAnswer" id="radioAnswer1" value="1">
-						<p>Réponse 1 vraie</p>
-						<input type="text" id="labelAnswer1" placeholder="Réponse 1">
+						</br><input class="style" type="text" id="labelAnswer1" placeholder="Réponse 1">
 					</div>
 
 					<div id="answer2Container">
+						<label>Réponse 2 : vraie </label>
 						<input type="radio" name="radioAnswer" id="radioAnswer2" value="2">
-						<p>Réponse 2 vraie</p>
-						<input type="text" id="labelAnswer2" placeholder="Réponse 2">
+						</br><input  class="style" type="text" id="labelAnswer2" placeholder="Réponse 2">
 					</div>
 
 					<div id="answer3Container">
+						<label>Réponse 3 : vraie </label>
 						<input type="radio" name="radioAnswer" id="radioAnswer3" value="3">
-						<p>Réponse 3 vraie</p>
-						<input type="text" id="labelAnswer3" placeholder="Réponse 3">
+						</br><input class="style" type="text" id="labelAnswer3" placeholder="Réponse 3">
 					</div>
 
 					<div id="answer4Container">
+						<label>Réponse 4 : vraie </label>
 						<input type="radio" name="radioAnswer" id="radioAnswer4" value="4">
-						<p>Réponse 4 vraie</p>
-						<input type="text" id="labelAnswer4" placeholder="Réponse 4">
+						</br><input class="style" type="text" id="labelAnswer4" placeholder="Réponse 4">
 					</div>
 				</div>
 

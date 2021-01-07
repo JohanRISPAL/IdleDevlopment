@@ -51,7 +51,7 @@ class Domain{
 		}
 	}
 
-	function getConnexion()
+	function getConnexion2()
 	{
 		$bdd = new PDO('mysql:host=localhost;dbname=idledevlopment;charset=utf8', 'root', 'root');
 
@@ -59,14 +59,14 @@ class Domain{
 	}
 
 	function createDomain(){
-		$bdd = getConnexion();
+		$bdd = getConnexion2();
 		$query = $bdd->prepare("INSERT INTO domain (label) VALUES (:label)");
 		$query->bindParam(':label', $_POST["label"], PDO::PARAM_STR);
 		$query->execute();
 	}
 
 	function updateDomain(){
-		$bdd = getConnexion();
+		$bdd = getConnexion2();
 		$query = $bdd->prepare("UPDATE domain SET domain.label = :label WHERE domain.id = :domain_ID");
 		$query->bindParam(':label', $_POST["label"], PDO::PARAM_STR);
 		$query->bindParam(':domain_ID', $_POST["domain_ID"], PDO::PARAM_INT);
@@ -74,14 +74,14 @@ class Domain{
 	}
 
 	function deleteDomain(){
-		$bdd = getConnexion();
+		$bdd = getConnexion2();
 		$query = $bdd->prepare("DELETE FROM domain WHERE domain.id = :domain_ID");
 		$query->bindParam(':domain_ID', $_POST["domain_ID"], PDO::PARAM_INT);
 		$query->execute();
 	}
 
 	function getAllDomain(){
-		$bdd = getConnexion();
+		$bdd = getConnexion2();
 		$query = $bdd->prepare("SELECT * FROM domain");
 		$query->execute();
 
@@ -99,7 +99,7 @@ class Domain{
 	}
 
 	function getDomainById(){
-		$bdd = getConnexion();
+		$bdd = getConnexion2();
 		$query = $bdd->prepare("SELECT * FROM domain WHERE id = :id");
 		$query->bindParam(':id', $_POST["id"], PDO::PARAM_STR);
 		$query->execute();

@@ -28,6 +28,7 @@ $(document).ready(function(){
     	$("#questionContainer").show();
     	$("#confirmModifQuestion").hide();
     	$("#supprQuestion").hide();
+    	$("#createQuestionContainer").hide();
     	let questionID = $(this).val();
 
     	$.ajax({
@@ -38,7 +39,7 @@ $(document).ready(function(){
 	        {
 	        	let question = JSON.parse(response);
 
-	        	let labelQuestion = document.getElementById("labelQuestion");
+	        	let labelQuestion = document.getElementById("labelQuestionCreated");
 	        	labelQuestion.setAttribute("value", question[0]["_label"]);
 
 	        	let isEliminatory = document.getElementById("isELiminatoryCheckBox");
@@ -116,6 +117,43 @@ $(document).ready(function(){
 					dropdownDomainCreated.removeAttribute("disabled");
 					dropdownLevelCreated.removeAttribute("disabled");
 
+					$("#dropdownDomainQuestion option[value='"+dropdownDomainCreated.value+"']").remove();
+					$("#dropdownLevelQuestion option[value='"+dropdownLevelCreated.value+"']").remove();
+
+					$.ajax({
+						data : {method : "getAllLevel"},
+						type : "post",
+						url : "./app/model/Level.php",
+						success : function(response){
+							let levels = JSON.parse(response);
+
+				        	$.each(levels, function(index, val){
+			            		let option = document.createElement("option");
+			            		option.setAttribute("value", val["_id"]);
+			            		option.innerHTML = val["_label"];
+
+			            		dropdownLevelCreated.appendChild(option);
+			            	});
+						}
+					});
+
+					$.ajax({
+						data : {method : "getAllDomain"},
+						type : "post",
+						url : "./app/model/Domain.php",
+						success : function(response){
+							let domains = JSON.parse(response);
+
+				        	$.each(domains, function(index, val){
+			            		let option = document.createElement("option");
+			            		option.setAttribute("value", val["_id"]);
+			            		option.innerHTML = val["_label"];
+
+			            		dropdownDomainCreated.appendChild(option);
+			            	});
+						}
+					});
+
 					for(let i = 1; i < 5; i++){
 						let labelAnswer = document.getElementById("labelAnswerCreated"+i),
 	            		radioAnswer = document.getElementById("radioAnswerCreated"+i);
@@ -192,6 +230,7 @@ $(document).ready(function(){
 
 	$(".createButton").click(function(event){
 		$("#createQuestionContainer").show();
+		$("#questionContainer").hide();
 		
         $.ajax({
         data : {method : "getAllDomain"},
@@ -229,7 +268,7 @@ $(document).ready(function(){
 
         $(".buttonCreateQuestion").click(function(event){
 
-        	let questionLabel = $(".labelQuestion").val();
+        	let questionLabel = $("#labelQuestion").val();
 
 			if( $('input[class=isELiminatoryCheckBox]').is(':checked') ){
 				$.ajax({
