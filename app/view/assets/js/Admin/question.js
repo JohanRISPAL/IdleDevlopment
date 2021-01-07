@@ -95,7 +95,7 @@ $(document).ready(function(){
 			        	$.each(answers, function(index, val){
 		            		let labelAnswer = document.getElementById("labelAnswerCreated"+i),
 		            		radioAnswer = document.getElementById("radioAnswerCreated"+i),
-		            		hiddenAnswer = document.getElementById("hiddenAnswer"+i);
+		            		hiddenAnswer = document.getElementById("hiddenAnswerCreated"+i);
 
 		            		labelAnswer.setAttribute("value", val["_label"]);
 		            		hiddenAnswer.setAttribute("value", val["_id"]);
