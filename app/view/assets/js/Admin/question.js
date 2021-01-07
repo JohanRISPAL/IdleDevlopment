@@ -2,10 +2,10 @@ $(document).ready(function(){
 
 	let dropdownDomain = document.getElementById("dropdownDomain"),
 	dropdownLevel = document.getElementById("dropdownLevel"),
-	divButtonQuestionContainer = document.getElementById("buttonQuestionContainer");
+	listQuestion = document.getElementById("listQuestion");
 
 	$("#createQuestionContainer").hide();
-	$("#questionContainer").hide();
+	$("#createdQuestionContainer").hide();
 
 	$.ajax({
         data : {method : "getQuestion"},
@@ -19,13 +19,13 @@ $(document).ready(function(){
         		button.setAttribute("id", "buttonQuestion");
         		button.setAttribute("value", val["_id"]);
         		button.innerHTML = val["_label"];
-        		divButtonQuestionContainer.appendChild(button);
+        		listQuestion.appendChild(button);
         	});
         }
     });
 
     $("#listQuestion").on("click", "#buttonQuestion", function(event){
-    	$("#questionContainer").show();
+    	$("#createdQuestionContainer").show();
     	$("#confirmModifQuestion").hide();
     	$("#supprQuestion").hide();
     	$("#createQuestionContainer").hide();
@@ -39,16 +39,16 @@ $(document).ready(function(){
 	        {
 	        	let question = JSON.parse(response);
 
-	        	let labelQuestion = document.getElementById("labelQuestionCreated");
+	        	let labelQuestion = document.getElementById("labelCreatedQuestion");
 	        	labelQuestion.setAttribute("value", question[0]["_label"]);
 
-	        	let isEliminatory = document.getElementById("isELiminatoryCheckBox");
+	        	let isEliminatory = document.getElementById("isELiminatoryCreatedCheckBox");
 	        	if(question[0]["_isEliminatory"] == 1){
 	        		isEliminatory.setAttribute("checked", true);
 	        	}
 
-	        	let dropdownDomainCreated = document.getElementById("dropdownDomainQuestion"),
-	        	dropdownLevelCreated = document.getElementById("dropdownLevelQuestion");
+	        	let dropdownDomainCreated = document.getElementById("dropdownDomainCreatedQuestion"),
+	        	dropdownLevelCreated = document.getElementById("dropdownLevelCreatedQuestion");
 
 	        	$.ajax({
 			        data : {method : "getDomainById", id : question[0]["_domain_ID"]},
@@ -230,7 +230,7 @@ $(document).ready(function(){
 
 	$(".createButton").click(function(event){
 		$("#createQuestionContainer").show();
-		$("#questionContainer").hide();
+		$("#createdQuestionContainer").hide();
 		
         $.ajax({
         data : {method : "getAllDomain"},

@@ -11,8 +11,8 @@
 <section>
 	<div class="row">
 		<div class="col l6" id="containerDomain">
-			<h3>Liste des domaines de questions</h3>
-			<button id="addDomain">Ajouter un domain</button>
+			<label class="titre">Liste des domaines</label>
+			<button id="addDomain"><i class="material-icons">add</i></button>
 			<?php
 				if(!empty($domains)){
 					foreach($domains as $d){
@@ -25,8 +25,8 @@
 			?>
 		</div>
 		<div class="col l6" id="containerLevel">
-			<h3>Liste des niveaux de questions</h3>
-			<button id="addLevel">Ajouter un niveau</button>
+			<label class="titre">Liste des Niveaux</label>
+			<button id="addLevel"><i class="material-icons">add</i></button>
 			<?php
 				if(!empty($level)){
 					foreach($level as $l){
