@@ -96,7 +96,7 @@
 					<div id="answer2Container">
 						<label>Réponse 2 : vraie </label>
 						<input type="radio" name="radioAnswer" id="radioAnswer2" value="2">
-						</br><input  class="style" type="text" id="labelAnswer2" placeholder="Réponse 2">
+						</br><input  class="inputField" type="text" id="labelAnswer2" placeholder="Réponse 2">
 					</div>
 
 					<div id="answer3Container">

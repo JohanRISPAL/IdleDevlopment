@@ -228,7 +228,7 @@ $(document).ready(function(){
 	    });
     });
 
-	$(".createButton").click(function(event){
+	$(".createQuestion").click(function(event){
 		$("#createQuestionContainer").show();
 		$("#createdQuestionContainer").hide();
 		
