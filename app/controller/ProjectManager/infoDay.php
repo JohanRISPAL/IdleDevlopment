@@ -6,7 +6,7 @@
 
 		include("./app/model/InformationDay.php");
 
-		$allInformationDay = InformationDay::getInformationDay($bdd);
+		//$allInformationDay = InformationDay::getInformationDay($bdd);
 		
 		include("./app/view/page/ProjectManager/informationDay.php");
 

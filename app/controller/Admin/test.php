@@ -6,7 +6,7 @@
 
 		include("./app/Model/Test.php");
 
-		$test = Test::getTest($bdd);
+		//$test = Test::getTest($bdd);
 
 		include("./app/view/page/Admin/test.php");
 

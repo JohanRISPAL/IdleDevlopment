@@ -49,6 +49,7 @@ class Domain{
 		{
 			echo $_POST["method"]();
 		}
+
 	}
 
 	function getConnexion2()
@@ -63,6 +64,16 @@ class Domain{
 		$query = $bdd->prepare("INSERT INTO domain (label) VALUES (:label)");
 		$query->bindParam(':label', $_POST["label"], PDO::PARAM_STR);
 		$query->execute();
+
+		$query2 = $bdd->prepare("SELECT * FROM domain ORDER BY id DESC LIMIT 1");
+		$query2->execute();
+
+		$query2Result = $query2->fetchAll();
+
+		$domain = New Domain($query2Result[0]["id"], $query2Result[0]["label"]);
+		$domainObjectVars = $domain->getObjectVars();
+
+		echo json_encode($domainObjectVars);
 	}
 
 	function updateDomain(){
@@ -101,7 +112,26 @@ class Domain{
 	function getDomainById(){
 		$bdd = getConnexion2();
 		$query = $bdd->prepare("SELECT * FROM domain WHERE id = :id");
-		$query->bindParam(':id', $_POST["id"], PDO::PARAM_STR);
+		$query->bindParam(':id', $_POST["id"], PDO::PARAM_INT);
+		$query->execute();
+
+		$queryResult = $query->fetchAll();
+
+		$domains = array();
+
+		foreach($queryResult as $q){
+			$domain = New Domain($q["id"], $q["label"]);
+			$domainObjectVars = $domain->getObjectVars();
+			array_push($domains, $domainObjectVars);
+		}
+
+		echo json_encode($domains);
+	}
+
+	function getOtherDomain(){
+		$bdd = getConnexion2();
+		$query = $bdd->prepare("SELECT * FROM domain WHERE id != :id");
+		$query->bindParam(':id', $_POST["id"], PDO::PARAM_INT);
 		$query->execute();
 
 		$queryResult = $query->fetchAll();

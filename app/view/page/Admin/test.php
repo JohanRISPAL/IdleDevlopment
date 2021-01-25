@@ -11,32 +11,39 @@
 <section id="pageContent">
 	<h1>Espace de gestion des tests</h1>
 	<div class="row">
+		<!--Div contenant les buttons pour afficher les tests ou en créer un-->
 		<div class="col l2" id="buttonTestContainer">
 			<h3>Tests créés</h3>
 			<button class="createTest">Créer un test</button>
 		</div>
+		<!--Fin div contenant les buttons pour afficher les tests ou en créer un-->
+
+		<!--Div contenant les éléments pour créer un test-->
 		<div class="col l8" id="creationTestContainer">
 			<h3>Création de test</h3>
-			<div class="testLabel">
+			<div id="testLabelContainer">
 				<p>Intitulé du test : </p>
 				<input type="text" id="testLabel">
 			</div>
-			<div class="testInformationDay">
+			<div id="testInformationDay">
 				<p>Journée d'information : </p>
 				<select id="informationDayDropdown">
 				</select>
 			</div>
 			<button id="testCreate">Créer le test</button>
 		</div>
-		<div class="col l8" id="testContainer">
+		<!--Fin div contenant les éléments pour créer un test-->
+
+		<!--Div contenant l'affichage d'un test créé et l'ajout de question-->
+		<div class="col l8" id="testCreatedContainer">
 			<h3 id="testTitle"></h3>
-			<div id="labelTestContainer">
+			<div id="labelTestCreatedContainer">
 				<p>Nom du test : </p>
-				<input type='text' id="labelTest" placeholder="nom du test" disabled>
+				<input type='text' id="labelTestCreated" placeholder="nom du test" disabled>
 			</div>
-			<div id="informationDayTestContainer">
+			<div id="informationDayTestCreatedContainer">
 				<p>Journée d'information : </p>
-				<select  id="informationDay" disabled>
+				<select  id="informationDayTestCreated" disabled>
 				</select>
 			</div>
 			<button id="modifTestButton">Modifier</button>
@@ -54,5 +61,6 @@
 				</div>
 			</div>
 		</div>
+		<!--Div contenant l'affichage d'un test créé et l'ajout de question-->
 	</div>
 </section>

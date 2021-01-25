@@ -59,9 +59,19 @@ class Level{
 
 	function createLevel(){
 		$bdd = getConnexion();
-		$query = $bdd->prepare("INSERT INTO level (label) VALUES (:level)");
-		$query->bindParam(':level', $_POST["level"], PDO::PARAM_STR);
+		$query = $bdd->prepare("INSERT INTO level (label) VALUES (:label)");
+		$query->bindParam(':label', $_POST["label"], PDO::PARAM_STR);
 		$query->execute();
+
+		$query2 = $bdd->prepare("SELECT * FROM level ORDER BY id DESC LIMIT 1");
+		$query2->execute();
+
+		$query2Result = $query2->fetchAll();
+
+		$level = New Level($query2Result[0]["id"], $query2Result[0]["label"]);
+		$levelObjectVars = $level->getObjectVars();
+
+		echo json_encode($levelObjectVars);
 	}
 
 	function updateLevel(){
@@ -100,7 +110,26 @@ class Level{
 	function getLevelById(){
 		$bdd = getConnexion();
 		$query = $bdd->prepare("SELECT * FROM level WHERE id = :id");
-		$query->bindParam(':id', $_POST["id"], PDO::PARAM_STR);
+		$query->bindParam(':id', $_POST["id"], PDO::PARAM_INT);
+		$query->execute();
+
+		$queryResult = $query->fetchAll();
+
+		$levels = array();
+
+		foreach($queryResult as $q){
+			$level = New Level($q["id"], $q["label"]);
+			$levelObjectVars = $level->getObjectVars();
+			array_push($levels, $levelObjectVars);
+		}
+
+		echo json_encode($levels);
+	}
+
+	function getOtherLevel(){
+		$bdd = getConnexion();
+		$query = $bdd->prepare("SELECT * FROM level WHERE id != :id");
+		$query->bindParam(':id', $_POST["id"], PDO::PARAM_INT);
 		$query->execute();
 
 		$queryResult = $query->fetchAll();

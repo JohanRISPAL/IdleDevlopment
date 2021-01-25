@@ -11,42 +11,44 @@
 <section>
 	<div class="row">
 
-		<!--Affichage des domaines-->
-		<div class="col l6" id="containerDomain">
-			<label class="titre">Liste des domaines</label>
-			<button id="addDomain"><i class="material-icons">add</i></button>
-			<?php
-				//Remplissage dropdown de domaine
-				if(!empty($domains)){
-					foreach($domains as $d){
-						echo "<input id='label".$d->getID()."'type='text' disabled value='". $d->getLabel()."'>";
-						echo "<button class='modifDomain' value='".$d->getID()."'>Modifier</button>";
-					}
-				}else{
-					echo "<p>Il n'y a pas encore de domaines créer</p>";
-				}
-				//Fin remplissage dropdown de domaine
-			?>
-		</div>
-		<!--Fin affichage des domaines-->
+		<!--Div contenant informations des domaines-->
+		<div class="col l6" id="domainContainer">
+			<h2 class="title">Liste des domaines</h2>
+			<button class="addButton" id="addDomain"><i class="material-icons">add</i></button>
+			<!--Div création domaine-->
+			<div id="createDomainContainer">
+				<label>Nom du domaine :</label>
+				<input type="text" id="createDomainInput">
+				<button id="createDomainButton">Créer</button>
+			</div>
+			<!--Fin div création domaine-->
 
-		<!--Affichage des niveaux-->
-		<div class="col l6" id="containerLevel">
-			<label class="titre">Liste des Niveaux</label>
-			<button id="addLevel"><i class="material-icons">add</i></button>
-			<?php
-				//Remplissage dropdown de niveau
-				if(!empty($level)){
-					foreach($level as $l){
-						echo "<input id='label".$l->getID()."'type='text' disabled value='". $l->getLabel()."'>";
-						echo "<button class='modifLevel' value='".$l->getID()."'>Modifier</button>";
-					}
-				}else{
-					echo "<p>Il n'y a pas encore de niveaux créer</p>";
-				}
-				//Fin remplissage dropdown de niveau
-			?>
+			<!--Affichage domaines-->
+			<div class="col l6" id="domainDisplay">
+				<h2>Liste des domaines</h2>
+			</div>
+			<!--Fin affichage domaines-->
 		</div>
-		<!--Fin affichage des niveaux-->
+		<!--Fin div contenant informations des domaines-->
+
+		<!--Div contenant informations des niveaux-->
+		<div class="col l6" id="levelContainer">
+			<h2 class="title">Liste des Niveaux</h2>
+			<button class="addButton" id="addLevel"><i class="material-icons">add</i></button>
+			<!--Div création level-->
+			<div id="createLevelContainer">
+				<label>Nom du level :</label>
+				<input type="text" id="createLevelInput">
+				<button id="createLevelButton">Créer</button>
+			</div>
+			<!--Fin div création level-->
+
+			<!--Affichage niveaux-->
+			<div class="col l6" id="levelDisplay">
+				<h2>Liste des niveaux</h2>
+			</div>
+			<!--Fin affichage niveaux-->
+		</div>
+		<!--Fin div contenant informations des niveaux-->
 	</div>
 </section>

@@ -3,10 +3,6 @@
 	try {
 		$bdd = new PDO('mysql:host=localhost;dbname=idledevlopment;charset=utf8', 'root', 'root');
 		$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-		include("./app/model/Candidate.php");
-
-		$allCandidat = Candidate::getCandidate($bdd);
 		
 		include("./app/view/page/ProjectManager/candidate.php");
 

@@ -31,7 +31,13 @@
 	</div>
 
 	<div class="col l8 offset-l2" id="creation">
-
+		<div id="candidateName">
+			<label>Nom du candidat :</label>
+			<input type="text" id="labelCandidateName">
+		</div>
+		<div id="candidateFirstName">
+			<label>Prénom du candidat :</label>
+		</div>
 	</div>
 	<div class="col l8 offset-l2" id="uploadFile">
 		<form action="./app/controller/ProjectManager/uploadFile.php" method="post" enctype="multipart/form-data">

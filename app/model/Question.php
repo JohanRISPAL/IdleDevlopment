@@ -108,7 +108,7 @@ class Question{
 		$bdd = getConnexion();
 
 		$query = $bdd->prepare("SELECT * FROM question WHERE id = :id");
-		$query->bindParam(':id', $_POST["id"], PDO::PARAM_STR);
+		$query->bindParam(':id', $_POST["id"], PDO::PARAM_INT);
 		$query->execute();
 
 		$queryResult = $query->fetchAll();
@@ -132,12 +132,22 @@ class Question{
 		$query->bindParam(':level_ID', $_POST["level_ID"], PDO::PARAM_INT);
 		$query->bindParam(':domain_ID', $_POST["domain_ID"], PDO::PARAM_INT);
 		$query->execute();
+
+		$query2 = $bdd->prepare("SELECT * FROM question ORDER BY id DESC LIMIT 1");
+		$query2->execute();
+
+		$query2Result = $query2->fetchAll();
+
+		$question = New Question($query2Result[0]["id"], $query2Result[0]["label"], $query2Result[0]["isEliminatory"], $query2Result[0]["level_ID"], $query2Result[0]["domain_ID"], $query2Result[0]["test_ID"]);
+		$questionObjectVars = $question->getObjectVars();
+
+		echo json_encode($questionObjectVars);
 	}
 
 	function getQuestionWithoutTest(){
 		$bdd = getConnexion();
 
-		$query = $bdd->prepare("SELECT * FROM question WHERE test_ID IS NULL");
+		$query = $bdd->prepare("SELECT * FROM `question` WHERE test_ID IS NULL ");
 		$query->execute();
 
 		$queryResult = $query->fetchAll();
@@ -157,9 +167,26 @@ class Question{
 		$bdd = getConnexion();
 
 		$query = $bdd->prepare("UPDATE question SET test_ID = :test_ID WHERE id = :id");
-		$query->bindParam(":test_ID", $_POST["test_ID"], PDO::PARAM_STR);
+		$query->bindParam(":test_ID", $_POST["test_ID"], PDO::PARAM_INT);
 		$query->bindParam(":id", $_POST["id"], PDO::PARAM_INT);
 		$query->execute();
+		
+
+		$query2 = $bdd->prepare("SELECT * FROM question WHERE test_ID = :id ");
+		$query2->bindParam(":id", $_POST["test_ID"], PDO::PARAM_INT);
+		$query2->execute();
+
+		$query2Result = $query2->fetchAll();
+
+		$questions = array();
+
+		foreach($query2Result as $q){
+			$question = New Question($q["id"], $q["label"], $q["isEliminatory"], $q["level_ID"], $q["domain_ID"], $q["test_ID"]);
+			$questionObjectVars = $question->getObjectVars();
+			array_push($questions, $questionObjectVars);
+		}
+
+		echo json_encode($questions);
 	}
 
 	function removeQuestionTest(){

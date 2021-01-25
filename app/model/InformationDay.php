@@ -133,4 +133,24 @@ class InformationDay{
 
 		echo json_encode($informationDays);
 	}
+
+	function getOtherInformationDay(){
+		$bdd = getConnexion();
+
+		$query = $bdd->prepare("SELECT * FROM informationDay WHERE id != :id");
+		$query->bindParam(':id', $_POST["informationDay_ID"], PDO::PARAM_INT);
+		$query->execute();
+
+		$queryResult = $query->fetchAll();
+
+		$informationDays = array();
+
+		foreach($queryResult as $q){
+			$informationDay = new InformationDay($q["id"], $q["label"], $q["dateOfDay"]);
+			$informationDayObjectVars = $informationDay->getObjectVars();
+			array_push($informationDays, $informationDayObjectVars);
+		}
+
+		echo json_encode($informationDays);
+	}
 ?>

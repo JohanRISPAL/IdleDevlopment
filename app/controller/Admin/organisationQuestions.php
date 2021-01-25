@@ -7,9 +7,9 @@
 		include("./app/model/Domain.php");
 		include("./app/model/Level.php");
 
-		$domains = Domain::getDomain($bdd);
+		//$domains = Domain::getDomain($bdd);
 
-		$level = Level::getLevel($bdd);
+		//$level = Level::getLevel($bdd);
 		
 		include("./app/view/page/Admin/organisationQuestions.php");
 
